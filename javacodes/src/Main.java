@@ -69,6 +69,27 @@ public class Main {
         // 5. 이동난이도 및 오르막길 차이에 따른 점수 변동 확인을 위한 데이터리스트
         ArrayList<Schedule> data5 = dataGen5();
 
+        // 6. K-MOOC 개수 차이에 따른 점수 변동 확인을 위한 데이터리스트
+        ArrayList<Schedule> data6 = dataGen6();
+
+
+        /*
+        아래는 데이터가 잘 생성되었는지 테스트하는 프린트 코드
+         */
+
+//        printClasses(hak);  // 학관 수업들
+//        printClasses(ecc);  // ECC 수업들
+//        printClasses(eng);  // 공대 수업들
+
+//        printSchedules(data1);
+        printSchedules(data2);
+//        printSchedules(data3);
+//        printSchedules(data4);
+//        printSchedules(data5);
+//        printSchedules(data6);
+
+
+
     }
 
     // 학관 과목 데이터를 생성하는 함수
@@ -294,7 +315,6 @@ public class Main {
         return result;
     }
 
-
     // 공강 일수에 따른 점수 변동 확인을 위한 데이터리스트를 생성하는 함수
     public static ArrayList<Schedule> dataGen2 () {
         ArrayList<Schedule> result = new ArrayList<>();
@@ -371,7 +391,6 @@ public class Main {
         // 데이터리스트 리턴
         return result;
     }
-
 
     // 1교시 수업 개수에 따른 점수 변동 확인을 위한 데이터리스트를 생성하는 함수
     public static ArrayList<Schedule> dataGen3 () {
@@ -840,6 +859,141 @@ public class Main {
         // 데이터리스트 리턴
         return result;
 
+    }
+
+    // K-MOOC 개수 차이에 따른 점수 변동 확인을 위한 데이터리스트를 생성하는 함수
+    public static ArrayList<Schedule> dataGen6 () {
+        ArrayList<Schedule> result = new ArrayList<>();
+
+        Schedule temp;
+
+        // K-MOOC 수업 0개짜리 시간표
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(hak.get(0));
+        temp.classList.add(hak.get(1));
+
+        temp.classList.add(hak.get(2));
+        temp.classList.add(hak.get(3));
+
+        temp.classList.add(hak.get(4));
+        temp.classList.add(hak.get(5));
+
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        temp.classList.add(hak.get(8));
+        temp.classList.add(hak.get(9));
+
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        result.add(temp);
+
+        // K-MOOC 수업 1개짜리 시간표
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(km.get(0));
+
+        temp.classList.add(hak.get(2));
+        temp.classList.add(hak.get(3));
+
+        temp.classList.add(hak.get(4));
+        temp.classList.add(hak.get(5));
+
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        temp.classList.add(hak.get(8));
+        temp.classList.add(hak.get(9));
+
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        result.add(temp);
+
+        // K-MOOC 수업 2개짜리 시간표
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(km.get(0));
+
+        temp.classList.add(km.get(1));
+
+        temp.classList.add(hak.get(4));
+        temp.classList.add(hak.get(5));
+
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        temp.classList.add(hak.get(8));
+        temp.classList.add(hak.get(9));
+
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        result.add(temp);
+
+        // K-MOOC 수업 3개짜리 시간표
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(km.get(0));
+
+        temp.classList.add(km.get(1));
+
+        temp.classList.add(km.get(2));
+
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        temp.classList.add(hak.get(8));
+        temp.classList.add(hak.get(9));
+
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        result.add(temp);
+
+
+        // 데이터리스트 리턴
+        return result;
+    }
+
+    /*
+    이 아래는 테스트용 함수
+     */
+
+    // 수업 데이터 생성이 잘 되었는지 테스트하는 함수
+    public static void printClasses (ArrayList<Class> list) {
+        // 주어진 수업 리스트에 대하여
+        for(Class c : list) {
+            // 수업 ID 출력
+            System.out.println("Class ID: " + c.id);
+            // 수업 정보 출력
+            System.out.println("과목명: " + c.className);
+            System.out.println("장소: " + c.location);
+            System.out.println("요일: " + c.weekday);
+            System.out.println("시작: " + c.startH + ":" + c.startM);
+            System.out.println("끝: " + c.endH + ":" + c.endM);
+            System.out.println();
+        }
+    }
+
+    // 시간표 데이터 생성이 잘 되었는지 테스트하는 함수
+    public static void printSchedules (ArrayList<Schedule> list) {
+        // 주어진 시간표 리스트에 대하여
+        for(Schedule s : list) {
+            // 시간표 ID 출력
+            System.out.println("Schedule ID: " + s.id);
+            // 시간표에 포함된 수업들의 ID 출력
+            System.out.print("Class IDs: ");
+            for(Class c : s.classList) System.out.print(c.id + " ");
+            System.out.println();
+            System.out.println();
+        }
     }
 
 }
