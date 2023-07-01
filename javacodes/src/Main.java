@@ -25,6 +25,12 @@ public class Main {
     public static void main(String[] args) {
 
         /*
+        이동 난이도 DB 생성
+         */
+
+
+
+        /*
         수업 데이터 생성
          */
 
@@ -83,7 +89,7 @@ public class Main {
 
 //        printTables(data1);
 //        printTables(data2);
-//        printTables(data3);
+        printTables(data3);
 //        printTables(data4);
 //        printTables(data5);
 //        printTables(data6);
@@ -91,6 +97,10 @@ public class Main {
 
 
     }
+
+    /*
+    이 아래는 수업 데이터 생성 함수
+     */
 
     // 학관 과목 데이터를 생성하는 함수
     public static ArrayList<Class> hak () {
@@ -249,7 +259,36 @@ public class Main {
 
     }
 
+    /*
+    이 아래는 시간표 데이터 생성 함수
+     */
 
+    // 수업을 시간표의 요일별 리스트에 집어넣는 함수
+    public static Table addClass (Table t, ArrayList<Class> list) {
+
+        for(Class c : list) {
+            switch (c.weekday) {
+                case "월":
+                    t.monday.add(c);
+                    break;
+                case "화":
+                    t.tuesday.add(c);
+                    break;
+                case "수":
+                    t.wednesday.add(c);
+                    break;
+                case "목":
+                    t.thursday.add(c);
+                    break;
+                case "금":
+                    t.friday.add(c);
+                    break;
+            }
+        }
+
+        return t;
+
+    }
 
     // 강의 개수에 따른 점수 변동 확인을 위한 데이터리스트를 생성하는 함수
     public static ArrayList<Table> dataGen1 () {
@@ -260,9 +299,11 @@ public class Main {
         // 강의 1개짜리 시간표
         tableId++;
         temp = new Table(tableId);
-
+        
         temp.classList.add(hak.get(0));
         temp.classList.add(hak.get(1));
+
+        temp = addClass(temp, temp.classList);
 
         result.add(temp);
 
@@ -275,6 +316,8 @@ public class Main {
 
         temp.classList.add(hak.get(2));
         temp.classList.add(hak.get(3));
+
+        temp = addClass(temp, temp.classList);
 
         result.add(temp);
 
@@ -290,6 +333,8 @@ public class Main {
 
         temp.classList.add(hak.get(4));
         temp.classList.add(hak.get(5));
+
+        temp = addClass(temp, temp.classList);
 
         result.add(temp);
 
@@ -308,6 +353,8 @@ public class Main {
 
         temp.classList.add(hak.get(6));
         temp.classList.add(hak.get(7));
+
+        temp = addClass(temp, temp.classList);
 
         result.add(temp);
 
@@ -333,6 +380,8 @@ public class Main {
 
         temp.classList.add(hak.get(30));
 
+        temp = addClass(temp, temp.classList);
+
         result.add(temp);
 
         // 공강 1일짜리 시간표
@@ -348,6 +397,8 @@ public class Main {
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
 
+        temp = addClass(temp, temp.classList);
+
         result.add(temp);
 
         // 공강 2일짜리 시간표
@@ -361,6 +412,8 @@ public class Main {
         temp.classList.add(hak.get(5));
 
         temp.classList.add(hak.get(28));
+
+        temp = addClass(temp, temp.classList);
 
         result.add(temp);
 
@@ -377,6 +430,8 @@ public class Main {
         temp.classList.add(hak.get(6));
         temp.classList.add(hak.get(7));
 
+        temp = addClass(temp, temp.classList);
+
         result.add(temp);
 
         // 공강 4일짜리 시간표
@@ -384,6 +439,8 @@ public class Main {
         temp = new Table(tableId);
 
         temp.classList.add(hak.get(28));
+
+        temp = addClass(temp, temp.classList);
 
         result.add(temp);
 
@@ -420,6 +477,8 @@ public class Main {
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
 
+        temp = addClass(temp, temp.classList);
+
         result.add(temp);
 
         // 1교시 수업 1개짜리 시간표
@@ -443,6 +502,8 @@ public class Main {
 
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
+
+        temp = addClass(temp, temp.classList);
 
         result.add(temp);
 
@@ -468,6 +529,8 @@ public class Main {
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
 
+        temp = addClass(temp, temp.classList);
+
         result.add(temp);
 
         // 1교시 수업 3개짜리 시간표
@@ -492,6 +555,8 @@ public class Main {
         temp.classList.add(hak.get(16));
         temp.classList.add(hak.get(17));
 
+        temp = addClass(temp, temp.classList);
+
         result.add(temp);
 
         // 1교시 수업 4개짜리 시간표
@@ -515,6 +580,8 @@ public class Main {
 
         temp.classList.add(hak.get(16));
         temp.classList.add(hak.get(17));
+
+        temp = addClass(temp, temp.classList);
 
         result.add(temp);
 
@@ -551,6 +618,8 @@ public class Main {
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
 
+        temp = addClass(temp, temp.classList);
+
         result.add(temp);
 
         // 3교시 이상 연강 수업 1개짜리 시간표
@@ -574,6 +643,8 @@ public class Main {
 
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
+
+        temp = addClass(temp, temp.classList);
 
         result.add(temp);
 
@@ -599,6 +670,8 @@ public class Main {
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
 
+        temp = addClass(temp, temp.classList);
+
         result.add(temp);
 
         // 3교시 이상 연강 수업 3개짜리 시간표
@@ -622,6 +695,8 @@ public class Main {
 
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
+
+        temp = addClass(temp, temp.classList);
 
         result.add(temp);
 
@@ -647,6 +722,8 @@ public class Main {
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
 
+        temp = addClass(temp, temp.classList);
+
         result.add(temp);
 
         // 3교시 이상 연강 수업 4개짜리 시간표 (3시간짜리 강의 2개를 포함)
@@ -668,6 +745,8 @@ public class Main {
         temp.classList.add(hak.get(28));
 
         temp.classList.add(hak.get(29));
+
+        temp = addClass(temp, temp.classList);
 
         result.add(temp);
 
@@ -709,6 +788,8 @@ public class Main {
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
 
+        temp = addClass(temp, temp.classList);
+
         result.add(temp);
 
         // 이동난이도 하 4번, 중 2번
@@ -732,6 +813,8 @@ public class Main {
         // 하
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
+
+        temp = addClass(temp, temp.classList);
 
         result.add(temp);
 
@@ -757,6 +840,8 @@ public class Main {
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
 
+        temp = addClass(temp, temp.classList);
+
         result.add(temp);
 
         // 이동난이도 중 6번
@@ -780,6 +865,8 @@ public class Main {
         // 중
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
+
+        temp = addClass(temp, temp.classList);
 
         result.add(temp);
 
@@ -805,6 +892,8 @@ public class Main {
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
 
+        temp = addClass(temp, temp.classList);
+
         result.add(temp);
 
         // 이동난이도 중 2번, 상 4번
@@ -829,6 +918,8 @@ public class Main {
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
 
+        temp = addClass(temp, temp.classList);
+
         result.add(temp);
 
         // 이동난이도 상 6번
@@ -852,6 +943,8 @@ public class Main {
         // 상
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
+
+        temp = addClass(temp, temp.classList);
 
         result.add(temp);
 
@@ -889,6 +982,8 @@ public class Main {
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
 
+        temp = addClass(temp, temp.classList);
+
         result.add(temp);
 
         // K-MOOC 수업 1개짜리 시간표
@@ -912,6 +1007,8 @@ public class Main {
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
 
+        temp = addClass(temp, temp.classList);
+
         result.add(temp);
 
         // K-MOOC 수업 2개짜리 시간표
@@ -934,6 +1031,8 @@ public class Main {
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
 
+        temp = addClass(temp, temp.classList);
+
         result.add(temp);
 
         // K-MOOC 수업 3개짜리 시간표
@@ -954,6 +1053,8 @@ public class Main {
 
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
+
+        temp = addClass(temp, temp.classList);
 
         result.add(temp);
 
@@ -993,6 +1094,28 @@ public class Main {
             for(Class c : s.classList) System.out.print(c.id + " ");
             System.out.println();
             System.out.println();
+            // 요일별로 수업들의 ID 출력
+            System.out.print("월요일: ");
+            for(Class c : s.monday) System.out.print(c.id + " ");
+            System.out.println();
+            System.out.println();
+            System.out.print("화요일: ");
+            for(Class c : s.tuesday) System.out.print(c.id + " ");
+            System.out.println();
+            System.out.println();
+            System.out.print("수요일: ");
+            for(Class c : s.wednesday) System.out.print(c.id + " ");
+            System.out.println();
+            System.out.println();
+            System.out.print("목요일: ");
+            for(Class c : s.thursday) System.out.print(c.id + " ");
+            System.out.println();
+            System.out.println();
+            System.out.print("금요일: ");
+            for(Class c : s.friday) System.out.print(c.id + " ");
+            System.out.println();
+            System.out.println();
+
         }
     }
 
