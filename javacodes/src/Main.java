@@ -1093,23 +1093,18 @@ public class Main {
             System.out.print("Class IDs: ");
             for(Class c : s.classList) System.out.print(c.id + " ");
             System.out.println();
-            System.out.println();
             // 요일별로 수업들의 ID 출력
             System.out.print("월요일: ");
             for(Class c : s.monday) System.out.print(c.id + " ");
             System.out.println();
-            System.out.println();
             System.out.print("화요일: ");
             for(Class c : s.tuesday) System.out.print(c.id + " ");
-            System.out.println();
             System.out.println();
             System.out.print("수요일: ");
             for(Class c : s.wednesday) System.out.print(c.id + " ");
             System.out.println();
-            System.out.println();
             System.out.print("목요일: ");
             for(Class c : s.thursday) System.out.print(c.id + " ");
-            System.out.println();
             System.out.println();
             System.out.print("금요일: ");
             for(Class c : s.friday) System.out.print(c.id + " ");
