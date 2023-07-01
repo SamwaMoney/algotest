@@ -81,12 +81,12 @@ public class Main {
 //        printClasses(ecc);  // ECC 수업들
 //        printClasses(eng);  // 공대 수업들
 
-//        printtables(data1);
-        printtables(data2);
-//        printtables(data3);
-//        printtables(data4);
-//        printtables(data5);
-//        printtables(data6);
+//        printTables(data1);
+//        printTables(data2);
+//        printTables(data3);
+//        printTables(data4);
+//        printTables(data5);
+//        printTables(data6);
 
 
 
@@ -983,7 +983,7 @@ public class Main {
     }
 
     // 시간표 데이터 생성이 잘 되었는지 테스트하는 함수
-    public static void printtables (ArrayList<Table> list) {
+    public static void printTables (ArrayList<Table> list) {
         // 주어진 시간표 리스트에 대하여
         for(Table s : list) {
             // 시간표 ID 출력
