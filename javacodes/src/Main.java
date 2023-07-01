@@ -23,7 +23,9 @@ public class Main {
     // 시간표 ID 지정을 위한 변수
     static Long tableId;
 
-    // 메인 함수
+    /*
+    메인 함수
+     */
     public static void main(String[] args) {
 
         /*
