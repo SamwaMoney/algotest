@@ -19,7 +19,7 @@ public class Main {
 
 
     // 시간표 ID 지정을 위한 변수
-    static Long scheduleId;
+    static Long tableId;
 
     // 메인 함수
     public static void main(String[] args) {
@@ -52,25 +52,25 @@ public class Main {
          */
 
         // 시간표 ID 값 0으로 초기화
-        scheduleId = 0L;
+        tableId = 0L;
 
         // 1. 강의 개수에 따른 점수 변동 확인을 위한 데이터리스트
-        ArrayList<Schedule> data1 = dataGen1();
+        ArrayList<Table> data1 = dataGen1();
 
         // 2. 공강 일수에 따른 점수 변동 확인을 위한 데이터리스트
-        ArrayList<Schedule> data2 = dataGen2();
+        ArrayList<Table> data2 = dataGen2();
 
         // 3. 1교시 수업 개수에 따른 점수 변동 확인을 위한 데이터리스트
-        ArrayList<Schedule> data3 = dataGen3();
+        ArrayList<Table> data3 = dataGen3();
 
         // 4. 3교시 이상 연강 개수에 따른 점수 변동 확인을 위한 데이터리스트
-        ArrayList<Schedule> data4 = dataGen4();
+        ArrayList<Table> data4 = dataGen4();
 
         // 5. 이동난이도 및 오르막길 차이에 따른 점수 변동 확인을 위한 데이터리스트
-        ArrayList<Schedule> data5 = dataGen5();
+        ArrayList<Table> data5 = dataGen5();
 
         // 6. K-MOOC 개수 차이에 따른 점수 변동 확인을 위한 데이터리스트
-        ArrayList<Schedule> data6 = dataGen6();
+        ArrayList<Table> data6 = dataGen6();
 
 
         /*
@@ -81,12 +81,12 @@ public class Main {
 //        printClasses(ecc);  // ECC 수업들
 //        printClasses(eng);  // 공대 수업들
 
-//        printSchedules(data1);
-        printSchedules(data2);
-//        printSchedules(data3);
-//        printSchedules(data4);
-//        printSchedules(data5);
-//        printSchedules(data6);
+//        printtables(data1);
+        printtables(data2);
+//        printtables(data3);
+//        printtables(data4);
+//        printtables(data5);
+//        printtables(data6);
 
 
 
@@ -252,14 +252,14 @@ public class Main {
 
 
     // 강의 개수에 따른 점수 변동 확인을 위한 데이터리스트를 생성하는 함수
-    public static ArrayList<Schedule> dataGen1 () {
-        ArrayList<Schedule> result = new ArrayList<>();
+    public static ArrayList<Table> dataGen1 () {
+        ArrayList<Table> result = new ArrayList<>();
 
-        Schedule temp;
+        Table temp;
 
         // 강의 1개짜리 시간표
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(hak.get(0));
         temp.classList.add(hak.get(1));
@@ -267,8 +267,8 @@ public class Main {
         result.add(temp);
 
         // 강의 2개짜리 시간표
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(hak.get(0));
         temp.classList.add(hak.get(1));
@@ -279,8 +279,8 @@ public class Main {
         result.add(temp);
 
         // 강의 3개짜리 시간표
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(hak.get(0));
         temp.classList.add(hak.get(1));
@@ -294,8 +294,8 @@ public class Main {
         result.add(temp);
 
         // 강의 4개짜리 시간표
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(hak.get(0));
         temp.classList.add(hak.get(1));
@@ -316,14 +316,14 @@ public class Main {
     }
 
     // 공강 일수에 따른 점수 변동 확인을 위한 데이터리스트를 생성하는 함수
-    public static ArrayList<Schedule> dataGen2 () {
-        ArrayList<Schedule> result = new ArrayList<>();
+    public static ArrayList<Table> dataGen2 () {
+        ArrayList<Table> result = new ArrayList<>();
 
-        Schedule temp;
+        Table temp;
 
         // 공강 0일짜리 시간표
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(hak.get(0));
         temp.classList.add(hak.get(1));
@@ -336,8 +336,8 @@ public class Main {
         result.add(temp);
 
         // 공강 1일짜리 시간표
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(hak.get(0));
         temp.classList.add(hak.get(1));
@@ -351,8 +351,8 @@ public class Main {
         result.add(temp);
 
         // 공강 2일짜리 시간표
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(hak.get(0));
         temp.classList.add(hak.get(1));
@@ -365,8 +365,8 @@ public class Main {
         result.add(temp);
 
         // 공강 3일짜리 시간표
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(hak.get(0));
         temp.classList.add(hak.get(1));
@@ -380,8 +380,8 @@ public class Main {
         result.add(temp);
 
         // 공강 4일짜리 시간표
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(hak.get(28));
 
@@ -393,14 +393,14 @@ public class Main {
     }
 
     // 1교시 수업 개수에 따른 점수 변동 확인을 위한 데이터리스트를 생성하는 함수
-    public static ArrayList<Schedule> dataGen3 () {
-        ArrayList<Schedule> result = new ArrayList<>();
+    public static ArrayList<Table> dataGen3 () {
+        ArrayList<Table> result = new ArrayList<>();
 
-        Schedule temp;
+        Table temp;
 
         // 1교시 수업 0개짜리 시간표
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(hak.get(0));
         temp.classList.add(hak.get(1));
@@ -423,8 +423,8 @@ public class Main {
         result.add(temp);
 
         // 1교시 수업 1개짜리 시간표
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(hak.get(12));
         temp.classList.add(hak.get(13));
@@ -447,8 +447,8 @@ public class Main {
         result.add(temp);
 
         // 1교시 수업 2개짜리 시간표
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(hak.get(12));
         temp.classList.add(hak.get(13));
@@ -471,8 +471,8 @@ public class Main {
         result.add(temp);
 
         // 1교시 수업 3개짜리 시간표
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(hak.get(12));
         temp.classList.add(hak.get(13));
@@ -495,8 +495,8 @@ public class Main {
         result.add(temp);
 
         // 1교시 수업 4개짜리 시간표
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(hak.get(12));
         temp.classList.add(hak.get(13));
@@ -524,14 +524,14 @@ public class Main {
     }
 
     // 3교시 이상 연강 개수에 따른 점수 변동 확인을 위한 데이터리스트를 생성하는 함수
-    public static ArrayList<Schedule> dataGen4 () {
-        ArrayList<Schedule> result = new ArrayList<>();
+    public static ArrayList<Table> dataGen4 () {
+        ArrayList<Table> result = new ArrayList<>();
 
-        Schedule temp;
+        Table temp;
 
         // 3교시 이상 연강 수업 0개짜리 시간표
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(hak.get(12));
         temp.classList.add(hak.get(13));
@@ -554,8 +554,8 @@ public class Main {
         result.add(temp);
 
         // 3교시 이상 연강 수업 1개짜리 시간표
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(hak.get(12));
         temp.classList.add(hak.get(13));
@@ -578,8 +578,8 @@ public class Main {
         result.add(temp);
 
         // 3교시 이상 연강 수업 2개짜리 시간표
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(hak.get(12));
         temp.classList.add(hak.get(13));
@@ -602,8 +602,8 @@ public class Main {
         result.add(temp);
 
         // 3교시 이상 연강 수업 3개짜리 시간표
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(hak.get(12));
         temp.classList.add(hak.get(13));
@@ -626,8 +626,8 @@ public class Main {
         result.add(temp);
 
         // 3교시 이상 연강 수업 4개짜리 시간표
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(hak.get(12));
         temp.classList.add(hak.get(13));
@@ -650,8 +650,8 @@ public class Main {
         result.add(temp);
 
         // 3교시 이상 연강 수업 4개짜리 시간표 (3시간짜리 강의 2개를 포함)
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(hak.get(12));
         temp.classList.add(hak.get(13));
@@ -678,18 +678,18 @@ public class Main {
     }
 
     // 이동난이도 차이에 따른 점수 변동 확인을 위한 데이터리스트를 생성하는 함수
-    public static ArrayList<Schedule> dataGen5 () {
+    public static ArrayList<Table> dataGen5 () {
         // 이 함수 내의 모든 시간표는 엑셀 파일의 "기본 시간표 형태"를 따름
         // "기본 시간표 형태"에서, 1번, 3번, 5번 강의의 강의위치만(학관/ECC/공대) 바꾸어 데이터를 생성하였음
         // 즉, 모든 시간표에서 직전직후 수업간 이동은 총 6번
 
-        ArrayList<Schedule> result = new ArrayList<>();
+        ArrayList<Table> result = new ArrayList<>();
 
-        Schedule temp;
+        Table temp;
 
         // 이동난이도 하 6번
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(hak.get(0));
         temp.classList.add(hak.get(1));
@@ -712,8 +712,8 @@ public class Main {
         result.add(temp);
 
         // 이동난이도 하 4번, 중 2번
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(ecc.get(0));
         temp.classList.add(ecc.get(1));
@@ -736,8 +736,8 @@ public class Main {
         result.add(temp);
 
         // 이동난이도 하 2번, 중 4번
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(ecc.get(0));
         temp.classList.add(ecc.get(1));
@@ -760,8 +760,8 @@ public class Main {
         result.add(temp);
 
         // 이동난이도 중 6번
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(ecc.get(0));
         temp.classList.add(ecc.get(1));
@@ -784,8 +784,8 @@ public class Main {
         result.add(temp);
 
         // 이동난이도 중 4번, 상 2번
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(eng.get(0));
         temp.classList.add(eng.get(1));
@@ -808,8 +808,8 @@ public class Main {
         result.add(temp);
 
         // 이동난이도 중 2번, 상 4번
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(eng.get(0));
         temp.classList.add(eng.get(1));
@@ -832,8 +832,8 @@ public class Main {
         result.add(temp);
 
         // 이동난이도 상 6번
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(eng.get(0));
         temp.classList.add(eng.get(1));
@@ -862,14 +862,14 @@ public class Main {
     }
 
     // K-MOOC 개수 차이에 따른 점수 변동 확인을 위한 데이터리스트를 생성하는 함수
-    public static ArrayList<Schedule> dataGen6 () {
-        ArrayList<Schedule> result = new ArrayList<>();
+    public static ArrayList<Table> dataGen6 () {
+        ArrayList<Table> result = new ArrayList<>();
 
-        Schedule temp;
+        Table temp;
 
         // K-MOOC 수업 0개짜리 시간표
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(hak.get(0));
         temp.classList.add(hak.get(1));
@@ -892,8 +892,8 @@ public class Main {
         result.add(temp);
 
         // K-MOOC 수업 1개짜리 시간표
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(km.get(0));
 
@@ -915,8 +915,8 @@ public class Main {
         result.add(temp);
 
         // K-MOOC 수업 2개짜리 시간표
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(km.get(0));
 
@@ -937,8 +937,8 @@ public class Main {
         result.add(temp);
 
         // K-MOOC 수업 3개짜리 시간표
-        scheduleId++;
-        temp = new Schedule(scheduleId);
+        tableId++;
+        temp = new Table(tableId);
 
         temp.classList.add(km.get(0));
 
@@ -983,11 +983,11 @@ public class Main {
     }
 
     // 시간표 데이터 생성이 잘 되었는지 테스트하는 함수
-    public static void printSchedules (ArrayList<Schedule> list) {
+    public static void printtables (ArrayList<Table> list) {
         // 주어진 시간표 리스트에 대하여
-        for(Schedule s : list) {
+        for(Table s : list) {
             // 시간표 ID 출력
-            System.out.println("Schedule ID: " + s.id);
+            System.out.println("Table ID: " + s.id);
             // 시간표에 포함된 수업들의 ID 출력
             System.out.print("Class IDs: ");
             for(Class c : s.classList) System.out.print(c.id + " ");
