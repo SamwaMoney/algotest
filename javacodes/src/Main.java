@@ -89,7 +89,7 @@ public class Main {
 
 //        printTables(data1);
 //        printTables(data2);
-        printTables(data3);
+//        printTables(data3);
 //        printTables(data4);
 //        printTables(data5);
 //        printTables(data6);
