@@ -8,8 +8,25 @@ public class Main {
     // 수업 ID 지정을 위한 변수
     static Long classId;
 
+    // 학관에서 하는 강의들을 담을 리스트
+    static ArrayList<Class> hak;
+    // ECC에서 하는 강의들을 담을 리스트
+    static ArrayList<Class> ecc;
+    // 공대에서 하는 강의들을 담을 리스트
+    static ArrayList<Class> eng;
+    // K-MOOC 강의들을 담을 리스트
+    static ArrayList<Class> km;
+
+
+    // 시간표 ID 지정을 위한 변수
+    static Long scheduleId;
+
     // 메인 함수
     public static void main(String[] args) {
+
+        /*
+        수업 데이터 생성
+         */
 
         // 수업 ID 값 0으로 초기화
         classId = 0L;
@@ -18,23 +35,45 @@ public class Main {
         // 원래 공대 중심으로 하려고 했는데... 공대는 모든 건물과의 이동난이도가 '상'이라서 대신 학관으로 선택했습니다ㅎㅎ...
 
         // 학관 과목 16개 생성
-        ArrayList<Class> hak = hak();
+        hak = hak();
 
         // 학관과의 이동난이도가 '중'인 ECC 과목 3개 생성
-        ArrayList<Class> ecc = ecc();
+        ecc = ecc();
 
         // 학관과의 이동난이도가 '상'인 공대 과목 3개 생성
-        ArrayList<Class> eng = eng();
+        eng = eng();
 
         // K-MOOC 과목 3개 생성
-        ArrayList<Class> km = km();
+        km = km();
 
+
+        /*
+        시간표 데이터 생성
+         */
+
+        // 시간표 ID 값 0으로 초기화
+        scheduleId = 0L;
+
+        // 1. 강의 개수에 따른 점수 변동 확인을 위한 데이터리스트
+        ArrayList<Schedule> data1 = dataGen1();
+
+        // 2. 공강 일수에 따른 점수 변동 확인을 위한 데이터리스트
+        ArrayList<Schedule> data2 = dataGen2();
+
+        // 3. 1교시 수업 개수에 따른 점수 변동 확인을 위한 데이터리스트
+        ArrayList<Schedule> data3 = dataGen3();
+
+        // 4. 3교시 이상 연강 개수에 따른 점수 변동 확인을 위한 데이터리스트
+        ArrayList<Schedule> data4 = dataGen4();
+
+        // 5. 이동난이도 및 오르막길 차이에 따른 점수 변동 확인을 위한 데이터리스트
+        ArrayList<Schedule> data5 = dataGen5();
 
     }
 
     // 학관 과목 데이터를 생성하는 함수
     public static ArrayList<Class> hak () {
-        // 학관 과목 16개 (일반 과목 14개 & 3시간 연강 과목 2개) (수업 30개)
+        // 학관 과목 17개 (일반 과목 14개 & 3시간 연강 과목 3개) (수업 31개)
         ArrayList<Class> result = new ArrayList<>();
 
         classId++;
@@ -113,6 +152,9 @@ public class Main {
         classId++;
         result.add(new Class(classId, "학관과목16", "학관", "목",  12, 30, 15, 15));
 
+        classId++;
+        result.add(new Class(classId, "학관과목17", "학관", "금",  11, 0, 13, 45));
+
         return result;
 
     }
@@ -187,6 +229,618 @@ public class Main {
     }
 
 
+
+    // 강의 개수에 따른 점수 변동 확인을 위한 데이터리스트를 생성하는 함수
+    public static ArrayList<Schedule> dataGen1 () {
+        ArrayList<Schedule> result = new ArrayList<>();
+
+        Schedule temp;
+
+        // 강의 1개짜리 시간표
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(hak.get(0));
+        temp.classList.add(hak.get(1));
+
+        result.add(temp);
+
+        // 강의 2개짜리 시간표
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(hak.get(0));
+        temp.classList.add(hak.get(1));
+
+        temp.classList.add(hak.get(2));
+        temp.classList.add(hak.get(3));
+
+        result.add(temp);
+
+        // 강의 3개짜리 시간표
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(hak.get(0));
+        temp.classList.add(hak.get(1));
+
+        temp.classList.add(hak.get(2));
+        temp.classList.add(hak.get(3));
+
+        temp.classList.add(hak.get(4));
+        temp.classList.add(hak.get(5));
+
+        result.add(temp);
+
+        // 강의 4개짜리 시간표
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(hak.get(0));
+        temp.classList.add(hak.get(1));
+
+        temp.classList.add(hak.get(2));
+        temp.classList.add(hak.get(3));
+
+        temp.classList.add(hak.get(4));
+        temp.classList.add(hak.get(5));
+
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        result.add(temp);
+
+        // 데이터리스트 리턴
+        return result;
+    }
+
+
+    // 공강 일수에 따른 점수 변동 확인을 위한 데이터리스트를 생성하는 함수
+    public static ArrayList<Schedule> dataGen2 () {
+        ArrayList<Schedule> result = new ArrayList<>();
+
+        Schedule temp;
+
+        // 공강 0일짜리 시간표
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(hak.get(0));
+        temp.classList.add(hak.get(1));
+
+        temp.classList.add(hak.get(8));
+        temp.classList.add(hak.get(9));
+
+        temp.classList.add(hak.get(30));
+
+        result.add(temp);
+
+        // 공강 1일짜리 시간표
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(hak.get(0));
+        temp.classList.add(hak.get(1));
+
+        temp.classList.add(hak.get(8));
+        temp.classList.add(hak.get(9));
+
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        result.add(temp);
+
+        // 공강 2일짜리 시간표
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(hak.get(0));
+        temp.classList.add(hak.get(1));
+
+        temp.classList.add(hak.get(4));
+        temp.classList.add(hak.get(5));
+
+        temp.classList.add(hak.get(28));
+
+        result.add(temp);
+
+        // 공강 3일짜리 시간표
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(hak.get(0));
+        temp.classList.add(hak.get(1));
+
+        temp.classList.add(hak.get(4));
+        temp.classList.add(hak.get(5));
+
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        result.add(temp);
+
+        // 공강 4일짜리 시간표
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(hak.get(28));
+
+        result.add(temp);
+
+
+        // 데이터리스트 리턴
+        return result;
+    }
+
+
+    // 1교시 수업 개수에 따른 점수 변동 확인을 위한 데이터리스트를 생성하는 함수
+    public static ArrayList<Schedule> dataGen3 () {
+        ArrayList<Schedule> result = new ArrayList<>();
+
+        Schedule temp;
+
+        // 1교시 수업 0개짜리 시간표
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(hak.get(0));
+        temp.classList.add(hak.get(1));
+
+        temp.classList.add(hak.get(2));
+        temp.classList.add(hak.get(3));
+
+        temp.classList.add(hak.get(4));
+        temp.classList.add(hak.get(5));
+
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        temp.classList.add(hak.get(8));
+        temp.classList.add(hak.get(9));
+
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        result.add(temp);
+
+        // 1교시 수업 1개짜리 시간표
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(hak.get(12));
+        temp.classList.add(hak.get(13));
+
+        temp.classList.add(hak.get(2));
+        temp.classList.add(hak.get(3));
+
+        temp.classList.add(hak.get(4));
+        temp.classList.add(hak.get(5));
+
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        temp.classList.add(hak.get(8));
+        temp.classList.add(hak.get(9));
+
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        result.add(temp);
+
+        // 1교시 수업 2개짜리 시간표
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(hak.get(12));
+        temp.classList.add(hak.get(13));
+
+        temp.classList.add(hak.get(14));
+        temp.classList.add(hak.get(15));
+
+        temp.classList.add(hak.get(4));
+        temp.classList.add(hak.get(5));
+
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        temp.classList.add(hak.get(8));
+        temp.classList.add(hak.get(9));
+
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        result.add(temp);
+
+        // 1교시 수업 3개짜리 시간표
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(hak.get(12));
+        temp.classList.add(hak.get(13));
+
+        temp.classList.add(hak.get(14));
+        temp.classList.add(hak.get(15));
+
+        temp.classList.add(hak.get(4));
+        temp.classList.add(hak.get(5));
+
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        temp.classList.add(hak.get(8));
+        temp.classList.add(hak.get(9));
+
+        temp.classList.add(hak.get(16));
+        temp.classList.add(hak.get(17));
+
+        result.add(temp);
+
+        // 1교시 수업 4개짜리 시간표
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(hak.get(12));
+        temp.classList.add(hak.get(13));
+
+        temp.classList.add(hak.get(14));
+        temp.classList.add(hak.get(15));
+
+        temp.classList.add(hak.get(4));
+        temp.classList.add(hak.get(5));
+
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        temp.classList.add(hak.get(18));
+        temp.classList.add(hak.get(19));
+
+        temp.classList.add(hak.get(16));
+        temp.classList.add(hak.get(17));
+
+        result.add(temp);
+
+
+        // 데이터리스트 리턴
+        return result;
+    }
+
+    // 3교시 이상 연강 개수에 따른 점수 변동 확인을 위한 데이터리스트를 생성하는 함수
+    public static ArrayList<Schedule> dataGen4 () {
+        ArrayList<Schedule> result = new ArrayList<>();
+
+        Schedule temp;
+
+        // 3교시 이상 연강 수업 0개짜리 시간표
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(hak.get(12));
+        temp.classList.add(hak.get(13));
+
+        temp.classList.add(hak.get(14));
+        temp.classList.add(hak.get(15));
+
+        temp.classList.add(hak.get(4));
+        temp.classList.add(hak.get(5));
+
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        temp.classList.add(hak.get(8));
+        temp.classList.add(hak.get(9));
+
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        result.add(temp);
+
+        // 3교시 이상 연강 수업 1개짜리 시간표
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(hak.get(12));
+        temp.classList.add(hak.get(13));
+
+        temp.classList.add(hak.get(14));
+        temp.classList.add(hak.get(15));
+
+        temp.classList.add(hak.get(4));
+        temp.classList.add(hak.get(5));
+
+        temp.classList.add(hak.get(20));
+        temp.classList.add(hak.get(21));
+
+        temp.classList.add(hak.get(8));
+        temp.classList.add(hak.get(9));
+
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        result.add(temp);
+
+        // 3교시 이상 연강 수업 2개짜리 시간표
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(hak.get(12));
+        temp.classList.add(hak.get(13));
+
+        temp.classList.add(hak.get(14));
+        temp.classList.add(hak.get(15));
+
+        temp.classList.add(hak.get(4));
+        temp.classList.add(hak.get(5));
+
+        temp.classList.add(hak.get(22));
+        temp.classList.add(hak.get(23));
+
+        temp.classList.add(hak.get(8));
+        temp.classList.add(hak.get(9));
+
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        result.add(temp);
+
+        // 3교시 이상 연강 수업 3개짜리 시간표
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(hak.get(12));
+        temp.classList.add(hak.get(13));
+
+        temp.classList.add(hak.get(14));
+        temp.classList.add(hak.get(15));
+
+        temp.classList.add(hak.get(24));
+        temp.classList.add(hak.get(25));
+
+        temp.classList.add(hak.get(22));
+        temp.classList.add(hak.get(23));
+
+        temp.classList.add(hak.get(8));
+        temp.classList.add(hak.get(9));
+
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        result.add(temp);
+
+        // 3교시 이상 연강 수업 4개짜리 시간표
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(hak.get(12));
+        temp.classList.add(hak.get(13));
+
+        temp.classList.add(hak.get(14));
+        temp.classList.add(hak.get(15));
+
+        temp.classList.add(hak.get(26));
+        temp.classList.add(hak.get(27));
+
+        temp.classList.add(hak.get(22));
+        temp.classList.add(hak.get(23));
+
+        temp.classList.add(hak.get(8));
+        temp.classList.add(hak.get(9));
+
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        result.add(temp);
+
+        // 3교시 이상 연강 수업 4개짜리 시간표 (3시간짜리 강의 2개를 포함)
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(hak.get(12));
+        temp.classList.add(hak.get(13));
+
+        temp.classList.add(hak.get(14));
+        temp.classList.add(hak.get(15));
+
+        temp.classList.add(hak.get(26));
+        temp.classList.add(hak.get(27));
+
+        temp.classList.add(hak.get(22));
+        temp.classList.add(hak.get(23));
+
+        temp.classList.add(hak.get(28));
+
+        temp.classList.add(hak.get(29));
+
+        result.add(temp);
+
+
+        // 데이터리스트 리턴
+        return result;
+
+    }
+
+    // 이동난이도 차이에 따른 점수 변동 확인을 위한 데이터리스트를 생성하는 함수
+    public static ArrayList<Schedule> dataGen5 () {
+        // 이 함수 내의 모든 시간표는 엑셀 파일의 "기본 시간표 형태"를 따름
+        // "기본 시간표 형태"에서, 1번, 3번, 5번 강의의 강의위치만(학관/ECC/공대) 바꾸어 데이터를 생성하였음
+        // 즉, 모든 시간표에서 직전직후 수업간 이동은 총 6번
+
+        ArrayList<Schedule> result = new ArrayList<>();
+
+        Schedule temp;
+
+        // 이동난이도 하 6번
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(hak.get(0));
+        temp.classList.add(hak.get(1));
+        // 본 주석의 위 강의와 아래 강의 사이 이동난이도 -> 하
+        temp.classList.add(hak.get(2));
+        temp.classList.add(hak.get(3));
+
+        temp.classList.add(hak.get(4));
+        temp.classList.add(hak.get(5));
+        // 하
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        temp.classList.add(hak.get(8));
+        temp.classList.add(hak.get(9));
+        // 하
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        result.add(temp);
+
+        // 이동난이도 하 4번, 중 2번
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(ecc.get(0));
+        temp.classList.add(ecc.get(1));
+        // 중
+        temp.classList.add(hak.get(2));
+        temp.classList.add(hak.get(3));
+
+        temp.classList.add(hak.get(4));
+        temp.classList.add(hak.get(5));
+        // 하
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        temp.classList.add(hak.get(8));
+        temp.classList.add(hak.get(9));
+        // 하
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        result.add(temp);
+
+        // 이동난이도 하 2번, 중 4번
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(ecc.get(0));
+        temp.classList.add(ecc.get(1));
+        // 중
+        temp.classList.add(hak.get(2));
+        temp.classList.add(hak.get(3));
+
+        temp.classList.add(ecc.get(2));
+        temp.classList.add(ecc.get(3));
+        // 중
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        temp.classList.add(hak.get(8));
+        temp.classList.add(hak.get(9));
+        // 하
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        result.add(temp);
+
+        // 이동난이도 중 6번
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(ecc.get(0));
+        temp.classList.add(ecc.get(1));
+        // 중
+        temp.classList.add(hak.get(2));
+        temp.classList.add(hak.get(3));
+
+        temp.classList.add(ecc.get(2));
+        temp.classList.add(ecc.get(3));
+        // 중
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        temp.classList.add(eng.get(4));
+        temp.classList.add(eng.get(5));
+        // 중
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        result.add(temp);
+
+        // 이동난이도 중 4번, 상 2번
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(eng.get(0));
+        temp.classList.add(eng.get(1));
+        // 상
+        temp.classList.add(hak.get(2));
+        temp.classList.add(hak.get(3));
+
+        temp.classList.add(ecc.get(2));
+        temp.classList.add(ecc.get(3));
+        // 중
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        temp.classList.add(ecc.get(4));
+        temp.classList.add(ecc.get(5));
+        // 중
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        result.add(temp);
+
+        // 이동난이도 중 2번, 상 4번
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(eng.get(0));
+        temp.classList.add(eng.get(1));
+        // 상
+        temp.classList.add(hak.get(2));
+        temp.classList.add(hak.get(3));
+
+        temp.classList.add(eng.get(2));
+        temp.classList.add(eng.get(3));
+        // 상
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        temp.classList.add(ecc.get(4));
+        temp.classList.add(ecc.get(5));
+        // 중
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        result.add(temp);
+
+        // 이동난이도 상 6번
+        scheduleId++;
+        temp = new Schedule(scheduleId);
+
+        temp.classList.add(eng.get(0));
+        temp.classList.add(eng.get(1));
+        // 상
+        temp.classList.add(hak.get(2));
+        temp.classList.add(hak.get(3));
+
+        temp.classList.add(eng.get(2));
+        temp.classList.add(eng.get(3));
+        // 상
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        temp.classList.add(eng.get(4));
+        temp.classList.add(eng.get(5));
+        // 상
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        result.add(temp);
+
+
+        // 데이터리스트 리턴
+        return result;
+
+    }
 
 }
 
