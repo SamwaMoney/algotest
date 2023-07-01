@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
 *   데이터 생성을 수행하는 메인 코드
@@ -27,7 +29,22 @@ public class Main {
         /*
         이동 난이도 DB 생성
          */
+        Map<String, Move> fromHak = new HashMap<>();    // 학관에서 출발하는 이동 난이도를 저장하는 해시맵 선언
+        Map<String, Move> fromEcc = new HashMap<>();    // ECC에서 출발하는 이동 난이도를 저장하는 해시맵 선언
+        Map<String, Move> fromEng = new HashMap<>();    // 공대에서 출발하는 이동 난이도를 저장하는 해시맵 선언
 
+        // 학관에서 학관으로의 이동 난이도 저장
+        fromHak.put("학관", new Move(false, Difficulty.LOW));
+        // 학관에서 ECC로의 이동 난이도 저장
+        fromHak.put("ECC", new Move(false, Difficulty.MEDIUM));
+        // 학관에서 공대로의 이동 난이도 저장
+        fromHak.put("공대", new Move(true, Difficulty.HIGH));
+
+        // ECC에서 학관으로의 이동 난이도 저장
+        fromEcc.put("학관", new Move(true, Difficulty.HIGH));
+
+        // 공대에서 학관으로의 이동 난이도 저장
+        fromEng.put("학관", new Move(false, Difficulty.HIGH));
 
 
         /*
@@ -43,10 +60,10 @@ public class Main {
         // 학관 과목 16개 생성
         hak = hak();
 
-        // 학관과의 이동난이도가 '중'인 ECC 과목 3개 생성
+        // 학관과의 이동난이도가 갈 때 '중', 올 때 '상'인 ECC 과목 3개 생성
         ecc = ecc();
 
-        // 학관과의 이동난이도가 '상'인 공대 과목 3개 생성
+        // 학관과의 이동난이도가 왕복 모두 '상'인 공대 과목 3개 생성
         eng = eng();
 
         // K-MOOC 과목 3개 생성
@@ -192,7 +209,7 @@ public class Main {
 
     // ecc 과목 3개를 생성하는 함수
     public static ArrayList<Class> ecc () {
-        // 학관과의 이동난이도가 '중'인 ECC 과목 3개 (수업 6개)
+        // 학관과의 이동난이도가 갈 때 '중', 올 때 '상'인 ECC 과목 3개 (수업 6개)
         ArrayList<Class> result = new ArrayList<>();
 
         // 학관과목1 의 위치만 ECC로 바꾼 것
@@ -218,7 +235,7 @@ public class Main {
 
     // 공대 과목 3개를 생성하는 함수
     public static ArrayList<Class> eng() {
-        // 학관과의 이동난이도가 '상'인 공대 과목 3개 (수업 6개)
+        // 학관과의 이동난이도가 왕복 모두 '상'인 공대 과목 3개 (수업 6개)
         ArrayList<Class> result = new ArrayList<>();
 
         // 학관과목1 의 위치만 공대로 바꾼 것
@@ -766,25 +783,25 @@ public class Main {
 
         Table temp;
 
-        // 이동난이도 하 6번
+        // 이동난이도 하 6회
         tableId++;
         temp = new Table(tableId);
 
         temp.classList.add(hak.get(0));
         temp.classList.add(hak.get(1));
-        // 본 주석의 위 강의와 아래 강의 사이 이동난이도 -> 하
+        // 학관 <-> 학관 (하 2회)
         temp.classList.add(hak.get(2));
         temp.classList.add(hak.get(3));
 
         temp.classList.add(hak.get(4));
         temp.classList.add(hak.get(5));
-        // 하
+        // 학관 <-> 학관 (하 2회)
         temp.classList.add(hak.get(6));
         temp.classList.add(hak.get(7));
 
         temp.classList.add(hak.get(8));
         temp.classList.add(hak.get(9));
-        // 하
+        // 학관 <-> 학관 (하 2회)
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
 
@@ -792,25 +809,25 @@ public class Main {
 
         result.add(temp);
 
-        // 이동난이도 하 4번, 중 2번
+        // 이동난이도 하 4회, 중 1회, 상 1회
         tableId++;
         temp = new Table(tableId);
 
         temp.classList.add(ecc.get(0));
         temp.classList.add(ecc.get(1));
-        // 중
+        // ECC <-> 학관 (중 1회, 상 1회)
         temp.classList.add(hak.get(2));
         temp.classList.add(hak.get(3));
 
         temp.classList.add(hak.get(4));
         temp.classList.add(hak.get(5));
-        // 하
+        // 학관 <-> 학관 (하 2회)
         temp.classList.add(hak.get(6));
         temp.classList.add(hak.get(7));
 
         temp.classList.add(hak.get(8));
         temp.classList.add(hak.get(9));
-        // 하
+        // 학관 <-> 학관 (하 2회)
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
 
@@ -818,25 +835,25 @@ public class Main {
 
         result.add(temp);
 
-        // 이동난이도 하 2번, 중 4번
+        // 이동난이도 하 4회, 상 2회
         tableId++;
         temp = new Table(tableId);
 
-        temp.classList.add(ecc.get(0));
-        temp.classList.add(ecc.get(1));
-        // 중
+        temp.classList.add(eng.get(0));
+        temp.classList.add(eng.get(1));
+        // 공대 <-> 학관 (상 2회)
         temp.classList.add(hak.get(2));
         temp.classList.add(hak.get(3));
 
-        temp.classList.add(ecc.get(2));
-        temp.classList.add(ecc.get(3));
-        // 중
+        temp.classList.add(hak.get(4));
+        temp.classList.add(hak.get(5));
+        // 학관 <-> 학관 (하 2회)
         temp.classList.add(hak.get(6));
         temp.classList.add(hak.get(7));
 
         temp.classList.add(hak.get(8));
         temp.classList.add(hak.get(9));
-        // 하
+        // 학관 <-> 학관 (하 2회)
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
 
@@ -844,77 +861,25 @@ public class Main {
 
         result.add(temp);
 
-        // 이동난이도 중 6번
+        // 이동난이도 하 2회, 중 1회, 상 3회
         tableId++;
         temp = new Table(tableId);
 
         temp.classList.add(ecc.get(0));
         temp.classList.add(ecc.get(1));
-        // 중
-        temp.classList.add(hak.get(2));
-        temp.classList.add(hak.get(3));
-
-        temp.classList.add(ecc.get(2));
-        temp.classList.add(ecc.get(3));
-        // 중
-        temp.classList.add(hak.get(6));
-        temp.classList.add(hak.get(7));
-
-        temp.classList.add(eng.get(4));
-        temp.classList.add(eng.get(5));
-        // 중
-        temp.classList.add(hak.get(10));
-        temp.classList.add(hak.get(11));
-
-        temp = addClass(temp, temp.classList);
-
-        result.add(temp);
-
-        // 이동난이도 중 4번, 상 2번
-        tableId++;
-        temp = new Table(tableId);
-
-        temp.classList.add(eng.get(0));
-        temp.classList.add(eng.get(1));
-        // 상
-        temp.classList.add(hak.get(2));
-        temp.classList.add(hak.get(3));
-
-        temp.classList.add(ecc.get(2));
-        temp.classList.add(ecc.get(3));
-        // 중
-        temp.classList.add(hak.get(6));
-        temp.classList.add(hak.get(7));
-
-        temp.classList.add(ecc.get(4));
-        temp.classList.add(ecc.get(5));
-        // 중
-        temp.classList.add(hak.get(10));
-        temp.classList.add(hak.get(11));
-
-        temp = addClass(temp, temp.classList);
-
-        result.add(temp);
-
-        // 이동난이도 중 2번, 상 4번
-        tableId++;
-        temp = new Table(tableId);
-
-        temp.classList.add(eng.get(0));
-        temp.classList.add(eng.get(1));
-        // 상
+        // ECC <-> 학관 (중 1회, 상 1회)
         temp.classList.add(hak.get(2));
         temp.classList.add(hak.get(3));
 
         temp.classList.add(eng.get(2));
         temp.classList.add(eng.get(3));
-        // 상
+        // 공대 <-> 학관 (상 2회)
         temp.classList.add(hak.get(6));
         temp.classList.add(hak.get(7));
 
-        temp.classList.add(ecc.get(4));
-        temp.classList.add(ecc.get(5));
-        // 중
+        temp.classList.add(hak.get(8));
+        temp.classList.add(hak.get(9));
+        // 학관 <-> 학관 (하 2회)
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
 
@@ -922,25 +887,129 @@ public class Main {
 
         result.add(temp);
 
-        // 이동난이도 상 6번
+        // 이동난이도 하 2회, 중 2회, 상 2회
         tableId++;
         temp = new Table(tableId);
 
-        temp.classList.add(eng.get(0));
-        temp.classList.add(eng.get(1));
-        // 상
+        temp.classList.add(ecc.get(0));
+        temp.classList.add(ecc.get(1));
+        // ECC <-> 학관 (중 1회, 상 1회)
         temp.classList.add(hak.get(2));
         temp.classList.add(hak.get(3));
 
-        temp.classList.add(eng.get(2));
-        temp.classList.add(eng.get(3));
-        // 상
+        temp.classList.add(ecc.get(2));
+        temp.classList.add(ecc.get(3));
+        // ECC <-> 학관 (중 1회, 상 1회)
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        temp.classList.add(hak.get(8));
+        temp.classList.add(hak.get(9));
+        // 학관 <-> 학관 (하 2회)
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        temp = addClass(temp, temp.classList);
+
+        result.add(temp);
+
+        // 이동난이도 중 3회, 상 3회
+        tableId++;
+        temp = new Table(tableId);
+
+        temp.classList.add(ecc.get(0));
+        temp.classList.add(ecc.get(1));
+        // ECC <-> 학관 (중 1회, 상 1회)
+        temp.classList.add(hak.get(2));
+        temp.classList.add(hak.get(3));
+
+        temp.classList.add(ecc.get(2));
+        temp.classList.add(ecc.get(3));
+        // ECC <-> 학관 (중 1회, 상 1회)
         temp.classList.add(hak.get(6));
         temp.classList.add(hak.get(7));
 
         temp.classList.add(eng.get(4));
         temp.classList.add(eng.get(5));
-        // 상
+        // ECC <-> 학관 (중 1회, 상 1회)
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        temp = addClass(temp, temp.classList);
+
+        result.add(temp);
+
+        // 이동난이도 중 2회, 상 4회
+        tableId++;
+        temp = new Table(tableId);
+
+        temp.classList.add(eng.get(0));
+        temp.classList.add(eng.get(1));
+        // 공대 <-> 학관 (상 2회)
+        temp.classList.add(hak.get(2));
+        temp.classList.add(hak.get(3));
+
+        temp.classList.add(ecc.get(2));
+        temp.classList.add(ecc.get(3));
+        // ECC <-> 학관 (중 1회, 상 1회)
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        temp.classList.add(ecc.get(4));
+        temp.classList.add(ecc.get(5));
+        // ECC <-> 학관 (중 1회, 상 1회)
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        temp = addClass(temp, temp.classList);
+
+        result.add(temp);
+
+        // 이동난이도 중 1회, 상 5회
+        tableId++;
+        temp = new Table(tableId);
+
+        temp.classList.add(eng.get(0));
+        temp.classList.add(eng.get(1));
+        // 공대 <-> 학관 (상 2회)
+        temp.classList.add(hak.get(2));
+        temp.classList.add(hak.get(3));
+
+        temp.classList.add(eng.get(2));
+        temp.classList.add(eng.get(3));
+        // 공대 <-> 학관 (상 2회)
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        temp.classList.add(ecc.get(4));
+        temp.classList.add(ecc.get(5));
+        // ECC <-> 학관 (중 1회, 상 1회)
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        temp = addClass(temp, temp.classList);
+
+        result.add(temp);
+
+        // 이동난이도 상 6회
+        tableId++;
+        temp = new Table(tableId);
+
+        temp.classList.add(eng.get(0));
+        temp.classList.add(eng.get(1));
+        // 공대 <-> 학관 (상 2회)
+        temp.classList.add(hak.get(2));
+        temp.classList.add(hak.get(3));
+
+        temp.classList.add(eng.get(2));
+        temp.classList.add(eng.get(3));
+        // 공대 <-> 학관 (상 2회)
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        temp.classList.add(eng.get(4));
+        temp.classList.add(eng.get(5));
+        // 공대 <-> 학관 (상 2회)
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
 
@@ -956,6 +1025,9 @@ public class Main {
 
     // K-MOOC 개수 차이에 따른 점수 변동 확인을 위한 데이터리스트를 생성하는 함수
     public static ArrayList<Table> dataGen6 () {
+        // 본 함수에서 K-MOOC 0개짜리 시간표는 엑셀 파일의 "기본 시간표 형태"와 동일하며, 모든 수업은 학관에서 합니다
+        // K-MOOC 개수가 1 증가할 때마다, 학관에서 하던 수업 중 하나가 삭제됩니다
+
         ArrayList<Table> result = new ArrayList<>();
 
         Table temp;
