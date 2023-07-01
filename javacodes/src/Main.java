@@ -31,6 +31,7 @@ public class Main {
         /*
         이동 난이도 DB 생성
          */
+        // 본 코드에서 생성되는 테스트데이터를 채점하기 위해 필요한 조합만을 저장하였습니다
         Map<String, Move> fromHak = new HashMap<>();    // 학관에서 출발하는 이동 난이도를 저장하는 해시맵 선언
         Map<String, Move> fromEcc = new HashMap<>();    // ECC에서 출발하는 이동 난이도를 저장하는 해시맵 선언
         Map<String, Move> fromEng = new HashMap<>();    // 공대에서 출발하는 이동 난이도를 저장하는 해시맵 선언
