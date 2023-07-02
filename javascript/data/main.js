@@ -206,7 +206,7 @@ const dataGen2 = () => {
     temp.classList.push(hak[8]);
     temp.classList.push(hak[9]);
 
-    temp.classList.push(hak[3]);
+    temp.classList.push(hak[30]);
 
     temp = addClass(temp, temp.classList);
 
@@ -221,8 +221,8 @@ const dataGen2 = () => {
     temp.classList.push(hak[8]);
     temp.classList.push(hak[9]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[10]);
+    temp.classList.push(hak[11]);
 
     temp = addClass(temp, temp.classList);
 
@@ -237,7 +237,7 @@ const dataGen2 = () => {
     temp.classList.push(hak[4]);
     temp.classList.push(hak[5]);
 
-    temp.classList.push(hak[2]);
+    temp.classList.push(hak[28]);
 
     temp = addClass(temp, temp.classList);
 
@@ -262,7 +262,7 @@ const dataGen2 = () => {
     // 공강 4일짜리 시간표
     temp = new Table(++tableId);
 
-    temp.classList.push(hak[2]);
+    temp.classList.push(hak[28]);
 
     temp = addClass(temp, temp.classList);
 
@@ -295,8 +295,8 @@ const dataGen3 = () => {
     temp.classList.push(hak[8]);
     temp.classList.push(hak[9]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[10]);
+    temp.classList.push(hak[11]);
 
     temp = addClass(temp, temp.classList);
 
@@ -305,8 +305,8 @@ const dataGen3 = () => {
     // 1교시 수업 1개짜리 시간표
     temp = new Table(++tableId);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[12]);
+    temp.classList.push(hak[13]);
 
     temp.classList.push(hak[2]);
     temp.classList.push(hak[3]);
@@ -320,8 +320,8 @@ const dataGen3 = () => {
     temp.classList.push(hak[8]);
     temp.classList.push(hak[9]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[10]);
+    temp.classList.push(hak[11]);
 
     temp = addClass(temp, temp.classList);
 
@@ -330,11 +330,11 @@ const dataGen3 = () => {
     // 1교시 수업 2개짜리 시간표
     temp = new Table(++tableId);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[12]);
+    temp.classList.push(hak[13]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[14]);
+    temp.classList.push(hak[15]);
 
     temp.classList.push(hak[4]);
     temp.classList.push(hak[5]);
@@ -345,8 +345,8 @@ const dataGen3 = () => {
     temp.classList.push(hak[8]);
     temp.classList.push(hak[9]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[10]);
+    temp.classList.push(hak[11]);
 
     temp = addClass(temp, temp.classList);
 
@@ -355,11 +355,11 @@ const dataGen3 = () => {
     // 1교시 수업 3개짜리 시간표
     temp = new Table(++tableId);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[12]);
+    temp.classList.push(hak[13]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[14]);
+    temp.classList.push(hak[15]);
 
     temp.classList.push(hak[4]);
     temp.classList.push(hak[5]);
@@ -370,8 +370,8 @@ const dataGen3 = () => {
     temp.classList.push(hak[8]);
     temp.classList.push(hak[9]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[16]);
+    temp.classList.push(hak[17]);
 
     temp = addClass(temp, temp.classList);
 
@@ -380,11 +380,11 @@ const dataGen3 = () => {
     // 1교시 수업 4개짜리 시간표
     temp = new Table(++tableId);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[12]);
+    temp.classList.push(hak[13]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[14]);
+    temp.classList.push(hak[15]);
 
     temp.classList.push(hak[4]);
     temp.classList.push(hak[5]);
@@ -392,11 +392,11 @@ const dataGen3 = () => {
     temp.classList.push(hak[6]);
     temp.classList.push(hak[7]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[18]);
+    temp.classList.push(hak[19]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[16]);
+    temp.classList.push(hak[17]);
 
     temp = addClass(temp, temp.classList);
 
@@ -414,11 +414,11 @@ const dataGen4 = () => {
     // 3교시 이상 연강 수업 0개짜리 시간표
     temp = new Table(++tableId);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[12]);
+    temp.classList.push(hak[13]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[14]);
+    temp.classList.push(hak[15]);
 
     temp.classList.push(hak[4]);
     temp.classList.push(hak[5]);
@@ -429,8 +429,8 @@ const dataGen4 = () => {
     temp.classList.push(hak[8]);
     temp.classList.push(hak[9]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[10]);
+    temp.classList.push(hak[11]);
 
     temp = addClass(temp, temp.classList);
 
@@ -439,23 +439,23 @@ const dataGen4 = () => {
     // 3교시 이상 연강 수업 1개짜리 시간표
     temp = new Table(++tableId);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[12]);
+    temp.classList.push(hak[13]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[14]);
+    temp.classList.push(hak[15]);
 
     temp.classList.push(hak[4]);
     temp.classList.push(hak[5]);
 
-    temp.classList.push(hak[2]);
-    temp.classList.push(hak[2]);
+    temp.classList.push(hak[20]);
+    temp.classList.push(hak[21]);
 
     temp.classList.push(hak[8]);
     temp.classList.push(hak[9]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[10]);
+    temp.classList.push(hak[11]);
 
     temp = addClass(temp, temp.classList);
 
@@ -464,23 +464,23 @@ const dataGen4 = () => {
     // 3교시 이상 연강 수업 2개짜리 시간표
     temp = new Table(++tableId);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[12]);
+    temp.classList.push(hak[13]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[14]);
+    temp.classList.push(hak[15]);
 
     temp.classList.push(hak[4]);
     temp.classList.push(hak[5]);
 
-    temp.classList.push(hak[2]);
-    temp.classList.push(hak[2]);
+    temp.classList.push(hak[22]);
+    temp.classList.push(hak[23]);
 
     temp.classList.push(hak[8]);
     temp.classList.push(hak[9]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[10]);
+    temp.classList.push(hak[11]);
 
     temp = addClass(temp, temp.classList);
 
@@ -489,23 +489,23 @@ const dataGen4 = () => {
     // 3교시 이상 연강 수업 3개짜리 시간표
     temp = new Table(++tableId);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[12]);
+    temp.classList.push(hak[13]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[14]);
+    temp.classList.push(hak[15]);
 
-    temp.classList.push(hak[2]);
-    temp.classList.push(hak[2]);
+    temp.classList.push(hak[24]);
+    temp.classList.push(hak[25]);
 
-    temp.classList.push(hak[2]);
-    temp.classList.push(hak[2]);
+    temp.classList.push(hak[22]);
+    temp.classList.push(hak[23]);
 
     temp.classList.push(hak[8]);
     temp.classList.push(hak[9]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[10]);
+    temp.classList.push(hak[11]);
 
     temp = addClass(temp, temp.classList);
 
@@ -514,23 +514,23 @@ const dataGen4 = () => {
     // 3교시 이상 연강 수업 4개짜리 시간표
     temp = new Table(++tableId);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[12]);
+    temp.classList.push(hak[13]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[14]);
+    temp.classList.push(hak[15]);
 
-    temp.classList.push(hak[2]);
-    temp.classList.push(hak[2]);
+    temp.classList.push(hak[26]);
+    temp.classList.push(hak[27]);
 
-    temp.classList.push(hak[2]);
-    temp.classList.push(hak[2]);
+    temp.classList.push(hak[22]);
+    temp.classList.push(hak[23]);
 
     temp.classList.push(hak[8]);
     temp.classList.push(hak[9]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[10]);
+    temp.classList.push(hak[11]);
 
     temp = addClass(temp, temp.classList);
 
@@ -539,21 +539,21 @@ const dataGen4 = () => {
     // 3교시 이상 연강 수업 4개짜리 시간표 (3시간짜리 강의 2개를 포함)
     temp = new Table(++tableId);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[12]);
+    temp.classList.push(hak[13]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[14]);
+    temp.classList.push(hak[15]);
 
-    temp.classList.push(hak[2]);
-    temp.classList.push(hak[2]);
+    temp.classList.push(hak[26]);
+    temp.classList.push(hak[27]);
 
-    temp.classList.push(hak[2]);
-    temp.classList.push(hak[2]);
+    temp.classList.push(hak[22]);
+    temp.classList.push(hak[23]);
 
-    temp.classList.push(hak[2]);
+    temp.classList.push(hak[28]);
 
-    temp.classList.push(hak[2]);
+    temp.classList.push(hak[29]);
 
     temp = addClass(temp, temp.classList);
 
@@ -591,8 +591,8 @@ const dataGen5 = () => {
     temp.classList.push(hak[8]);
     temp.classList.push(hak[9]);
     // 학관 <-> 학관 (하 2회)
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[10]);
+    temp.classList.push(hak[11]);
 
     temp = addClass(temp, temp.classList);
 
@@ -616,8 +616,8 @@ const dataGen5 = () => {
     temp.classList.push(hak[8]);
     temp.classList.push(hak[9]);
     // 학관 <-> 학관 (하 2회)
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[10]);
+    temp.classList.push(hak[11]);
 
     temp = addClass(temp, temp.classList);
 
@@ -641,8 +641,8 @@ const dataGen5 = () => {
     temp.classList.push(hak[8]);
     temp.classList.push(hak[9]);
     // 학관 <-> 학관 (하 2회)
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[10]);
+    temp.classList.push(hak[11]);
 
     temp = addClass(temp, temp.classList);
 
@@ -666,8 +666,8 @@ const dataGen5 = () => {
     temp.classList.push(hak[8]);
     temp.classList.push(hak[9]);
     // 학관 <-> 학관 (하 2회)
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[10]);
+    temp.classList.push(hak[11]);
 
     temp = addClass(temp, temp.classList);
 
@@ -691,8 +691,8 @@ const dataGen5 = () => {
     temp.classList.push(hak[8]);
     temp.classList.push(hak[9]);
     // 학관 <-> 학관 (하 2회)
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[10]);
+    temp.classList.push(hak[11]);
 
     temp = addClass(temp, temp.classList);
 
@@ -716,8 +716,8 @@ const dataGen5 = () => {
     temp.classList.push(eng[4]);
     temp.classList.push(eng[5]);
     // ECC <-> 학관 (중 1회, 상 1회)
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[10]);
+    temp.classList.push(hak[11]);
 
     temp = addClass(temp, temp.classList);
 
@@ -741,8 +741,8 @@ const dataGen5 = () => {
     temp.classList.push(ecc[4]);
     temp.classList.push(ecc[5]);
     // ECC <-> 학관 (중 1회, 상 1회)
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[10]);
+    temp.classList.push(hak[11]);
 
     temp = addClass(temp, temp.classList);
 
@@ -766,8 +766,8 @@ const dataGen5 = () => {
     temp.classList.push(ecc[4]);
     temp.classList.push(ecc[5]);
     // ECC <-> 학관 (중 1회, 상 1회)
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[10]);
+    temp.classList.push(hak[11]);
 
     temp = addClass(temp, temp.classList);
 
@@ -791,8 +791,8 @@ const dataGen5 = () => {
     temp.classList.push(eng[4]);
     temp.classList.push(eng[5]);
     // 공대 <-> 학관 (상 2회)
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[10]);
+    temp.classList.push(hak[10]);
 
     temp = addClass(temp, temp.classList);
 
@@ -825,8 +825,8 @@ const dataGen6 = () => {
     temp.classList.push(hak[8]);
     temp.classList.push(hak[9]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[10]);
+    temp.classList.push(hak[11]);
 
     temp = addClass(temp, temp.classList);
 
@@ -849,8 +849,8 @@ const dataGen6 = () => {
     temp.classList.push(hak[8]);
     temp.classList.push(hak[9]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[10]);
+    temp.classList.push(hak[11]);
 
     temp = addClass(temp, temp.classList);
 
@@ -872,8 +872,8 @@ const dataGen6 = () => {
     temp.classList.push(hak[8]);
     temp.classList.push(hak[9]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[10]);
+    temp.classList.push(hak[11]);
 
     temp = addClass(temp, temp.classList);
 
@@ -894,8 +894,8 @@ const dataGen6 = () => {
     temp.classList.push(hak[8]);
     temp.classList.push(hak[9]);
 
-    temp.classList.push(hak[1]);
-    temp.classList.push(hak[1]);
+    temp.classList.push(hak[10]);
+    temp.classList.push(hak[11]);
 
     temp = addClass(temp, temp.classList);
 
