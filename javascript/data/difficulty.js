@@ -1,7 +1,7 @@
 // 난이도 Enum
 const Difficulty = {
     HIGH: "HIGH",
-    MIDIUM: "MIDIUM",
+    MEDIUM: "MEDIUM",
     LOW: "LOW"
 };
 export default Difficulty;
