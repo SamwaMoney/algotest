@@ -4,15 +4,16 @@ import Table from './table.js';
 import Difficulty from './difficulty.js';
 
 // 이동 난이도 DB 생성
-let fromHak = new Map(); // 학관에서 출발하는 이동 난이도를 저장하는 해시맵 선언
-let fromEcc = new Map(); // ECC에서 출발하는 이동 난이도를 저장하는 해시맵 선언
-let fromEng = new Map(); // 공대에서 출발하는 이동 난이도를 저장하는 해시맵 선언
+let moveDifficulty = new Map();
+moveDifficulty.set(('학관', '학관'), new Move(false, Difficulty.LOW));
+moveDifficulty.set(('학관', 'ECC'), new Move(false, Difficulty.MEDIUM));
+moveDifficulty.set(('학관', '공대'), new Move(true, Difficulty.HIGH));
+moveDifficulty.set(('ECC', '학관'), new Move(true, Difficulty.HIGH));
+moveDifficulty.set(('공대', '학관'), new Move(false, Difficulty.HIGH));
 
-fromHak.set("학관", new Move(false, Difficulty.LOW)); // 학관에서 학관으로의 이동 난이도 저장
-fromHak.set("ECC", new Move(false, Difficulty.MEDIUM)); // 학관에서 ECC로의 이동 난이도 저장
-fromHak.set("공대", new Move(true, Difficulty.HIGH)); // 학관에서 공대로의 이동 난이도 저장
-fromEcc.set("학관", new Move(true, Difficulty.HIGH)); // ECC에서 학관으로의 이동 난이도 저장
-fromEng.set("학관", new Move(false, Difficulty.HIGH)); // 공대에서 학관으로의 이동 난이도 저장
+console.log(fromHak);
+console.log(fromEcc);
+console.log(fromEng);
 
 // 수업 데이터 생성 함수
 const Hak = () => { // 학관 과목
@@ -933,5 +934,5 @@ const printTable = () => {
     //console.log(data1[0].classList);
 }
 
-printData();
-printTable();
+//printData();
+//printTable();
