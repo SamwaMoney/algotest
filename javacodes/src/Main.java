@@ -103,18 +103,77 @@ public class Main {
         아래는 데이터가 잘 생성되었는지 테스트하는 프린트 코드
          */
 
-//        printClasses(hak);  // 학관 수업들
-//        printClasses(ecc);  // ECC 수업들
-//        printClasses(eng);  // 공대 수업들
+        printClasses(hak);  // 학관 수업들
+        printClasses(ecc);  // ECC 수업들
+        printClasses(eng);  // 공대 수업들
+        printClasses(km); // kmooc 수업들
 
-//        printTables(data1);
-//        printTables(data2);
-//        printTables(data3);
-//        printTables(data4);
-//        printTables(data5);
-//        printTables(data6);
+        printTables(data1);
+        printTables(data2);
+        printTables(data3);
+        printTables(data4);
+        printTables(data5);
+        printTables(data6);
 
+        System.out.println("========== algorithm test ==========");
+        // 공강 개수 count
+        System.out.println("공강 개수 count");
+        int numDayoffs = AllClassAlgo.DayoffAlgo(data2);
+        System.out.println(numDayoffs);
 
+        System.out.println("\n 채플 개수 count");
+        // 채플 개수 count
+        int numChapel1 = AllClassAlgo.ChapelAlgo(hak);
+        System.out.println(numChapel1);
+        int numChapel2 = AllClassAlgo.ChapelAlgo(ecc);
+        System.out.println(numChapel2);
+
+        System.out.println("원격/온라인 개수 count");
+        // 원격/온라인 개수 count
+        int numOnline1 = AllClassAlgo.OnlineAlgo(hak);
+        System.out.println(numOnline1);
+        int numOnline2 = AllClassAlgo.OnlineAlgo(km);
+        System.out.println(numOnline2);
+
+        System.out.println("모든 수업 개수 count");
+        // 모든 수업 개수 count
+        int numAllClasses1 = AllClassAlgo.AllClassesAlgo(hak);
+        System.out.println(numAllClasses1);
+        int numAllClasses2 = AllClassAlgo.AllClassesAlgo(ecc);
+        System.out.println(numAllClasses2);
+        int numAllClasses3 = AllClassAlgo.AllClassesAlgo(km);
+        System.out.println(numAllClasses3);
+
+        System.out.println("1교시 수업 개수 count");
+
+        // 1교시 수업 개수 count
+        int firstClassNum1 = AllClassAlgo.FirstClassAlgo(hak);
+        System.out.println(firstClassNum1);
+        int firstClassNum2 = AllClassAlgo.FirstClassAlgo(eng);
+        System.out.println(firstClassNum2);
+
+        System.out.println("오전 수업 개수 count");
+        // 오전 수업 개수 count
+        int morningClassNum1 = AllClassAlgo.MorningClassAlgo(hak);
+        System.out.println(morningClassNum1);
+        int morningClassNum2 = AllClassAlgo.MorningClassAlgo(ecc);
+        System.out.println(morningClassNum2);
+        int morningClassNum3 = AllClassAlgo.MorningClassAlgo(eng);
+        System.out.println(morningClassNum3);
+
+        System.out.println("모든 장소 같은지 판별");
+        // 모든 장소 같은지 판별
+        int isLocationSame1 = AllClassAlgo.sameLocationAlgo(eng);
+        System.out.println(isLocationSame1);
+        int isLocationSame2 = AllClassAlgo.sameLocationAlgo(ecc);
+        System.out.println(isLocationSame2);
+
+        System.out.println("모든 장소 다른지 판별");
+        // 모든 장소 다른지 판별
+        boolean isLocationDifferent1 = AllClassAlgo.differentLocationAlgo(eng);
+        System.out.println(isLocationDifferent1);
+        boolean isLocationDifferent2 = AllClassAlgo.differentLocationAlgo(ecc);
+        System.out.println(isLocationDifferent2);
 
     }
 
@@ -205,6 +264,13 @@ public class Main {
 
         classId++;
         result.add(new Class(classId, "학관과목17", "학관", "금",  11, 0, 13, 45));
+
+        // 채플 임의로 추가
+        classId++;
+        result.add(new Class(classId, "채플", "대강당", "월",  10, 0, 10, 30));
+
+        classId++;
+        result.add(new Class(classId, "채플", "대강당", "월",  11, 0, 11, 30));
 
         return result;
 
@@ -1188,6 +1254,7 @@ public class Main {
 
         }
     }
+
 
 }
 
