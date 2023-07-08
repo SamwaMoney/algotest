@@ -144,7 +144,46 @@ public class AllClassAlgo {
     }
 
     // 강의가 모두 오전인지 판별
+    public static boolean allMorningAlgo(ArrayList<Class> list) {
+        Set<String> allClass = new HashSet<>(); // 모든 강의 저장
+        Set<String> morningClass = new HashSet<>(); // 오전 강의 저장
+        boolean isAllMorning;
 
+        for (Class c : list) {
+            allClass.add(c.className);
+            if (c.startH == 8 || c.startH == 9) {
+                morningClass.add(c.className);
+            }
+        }
+
+        if (allClass.size() == morningClass.size()) {
+            isAllMorning = true;
+        } else {
+            isAllMorning = false;
+        }
+
+        return isAllMorning;
+    }
 
     // 강의가 모두 오후인지 판별
+    public static boolean allAfternoonAlgo(ArrayList<Class> list) {
+        Set<String> allClass = new HashSet<>(); // 모든 강의 저장
+        Set<String> afternoonClass = new HashSet<>(); // 오전 강의 저장
+        boolean isAllAfternoon;
+
+        for (Class c : list) {
+            allClass.add(c.className);
+            if (c.startH == 8 || c.startH == 9) {
+                afternoonClass.add(c.className);
+            }
+        }
+
+        if (allClass.size() == afternoonClass.size()) {
+            isAllAfternoon = true;
+        } else {
+            isAllAfternoon = false;
+        }
+
+        return isAllAfternoon;
+    }
 }

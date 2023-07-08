@@ -175,6 +175,18 @@ public class Main {
         boolean isLocationDifferent2 = AllClassAlgo.differentLocationAlgo(ecc);
         System.out.println(isLocationDifferent2);
 
+        System.out.println("모두 오전 수업인지 판별");
+        boolean isAllMorning1 = AllClassAlgo.allMorningAlgo(eng);
+        System.out.println(isAllMorning1);
+        boolean isAllMorning2 = AllClassAlgo.allMorningAlgo(hak);
+        System.out.println(isAllMorning2);
+
+        System.out.println("모두 오후 수업인지 판별");
+        boolean isAllAfternoon1 = AllClassAlgo.allAfternoonAlgo(eng);
+        System.out.println(isAllAfternoon1);
+        boolean isAllAfternoon2 = AllClassAlgo.allAfternoonAlgo(hak);
+        System.out.println(isAllAfternoon2);
+
     }
 
     /*
