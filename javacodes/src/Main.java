@@ -106,7 +106,8 @@ public class Main {
 //        printClasses(hak);  // 학관 수업들
 //        printClasses(ecc);  // ECC 수업들
 //        printClasses(eng);  // 공대 수업들
-
+//        printClasses(km); // kmooc 수업들
+//
 //        printTables(data1);
 //        printTables(data2);
 //        printTables(data3);
@@ -114,7 +115,45 @@ public class Main {
 //        printTables(data5);
 //        printTables(data6);
 
+        System.out.println("========== algorithm test ==========");
 
+        // 공강 개수 count
+        System.out.println("공강 개수 count");
+        for(Table t : data3) AllClassAlgo.DayoffAlgo(t);
+
+        // 채플 개수 count
+        System.out.println("채플 개수 count");
+        for(Table t : data2) AllClassAlgo.ChapelAlgo(t);
+
+        // 원격/온라인 개수 count
+        System.out.println("원격/온라인 개수 count");
+        for(Table t : data6) AllClassAlgo.OnlineAlgo(t);
+
+        // 모든 수업 개수 count
+        System.out.println("모든 수업 개수 count");
+        for(Table t : data1) AllClassAlgo.AllClassesAlgo(t);
+
+        // 1교시 수업 개수 count
+        System.out.println("1교시 수업 개수 count");
+        for(Table t : data3) AllClassAlgo.FirstClassAlgo(t);
+
+        // 오전 수업 개수 count
+        System.out.println("오전 수업 개수 count");
+        for(Table t : data3) AllClassAlgo.MorningClassAlgo(t);
+
+        // 모든 장소 같은지 판별
+        System.out.println("모든 장소 같은지 판별");
+        for(Table t : data2) AllClassAlgo.sameLocationAlgo(t);
+
+        System.out.println("모든 장소 다른지 판별");
+        // 모든 장소 다른지 판별
+        for(Table t : data2) AllClassAlgo.differentLocationAlgo(t);
+
+        System.out.println("모두 오전 수업인지 판별");
+        for(Table t : data3) AllClassAlgo.allMorningAlgo(t);
+
+        System.out.println("모두 오후 수업인지 판별");
+        for(Table t : data2) AllClassAlgo.allAfternoonAlgo(t);
 
     }
 
@@ -1188,6 +1227,7 @@ public class Main {
 
         }
     }
+
 
 }
 
