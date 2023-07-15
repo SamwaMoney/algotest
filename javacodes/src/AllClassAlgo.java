@@ -9,26 +9,38 @@ public class AllClassAlgo {
     }
 
     // 전체 과목 개수 count
+    // 수업 7개 미만: 수업 하나당 +1, 원격 비대면일 경우 +7
     public static int AllClassesAlgo(Table t) {
         Set<String> allClasses = new HashSet<>(); // 모든 강의 리스트
 
         int allCount = 0; // 모든 강의의 수 저장
+        int online = 0; // 원격/온라인 강의의 수 저장
+        int score = 0; // 점수 저장
 
         for (Class c : t.classList) {
+            if (c.location.equals("원격/비대면")) {
+                score += 3;
+                online++;
+            } else {
+                score++;
+            }
             allClasses.add(c.className);
         }
 
         allCount = allClasses.size();
 
-        System.out.println(allCount);
 
-        return allCount;
+        System.out.println("과목의 개수가 " + allCount + "개이고, 원격/온라인 강의의 개수는 " + online +"개 이므로, 점수는 " + score);
+
+        return score;
     }
 
     // 공강 개수 count
+    // 요일 공강 하나당 +10
     public static int DayoffAlgo(Table t) {
 
         int dayOffs = 0; // 공강 개수 저장
+        int score = 0; // 점수 저장
 
         // mon
         if (t.monday.isEmpty()) {
@@ -55,7 +67,9 @@ public class AllClassAlgo {
             dayOffs++;
         }
 
-        System.out.println(dayOffs);
+        score = dayOffs * 10;
+
+        System.out.println("요일 공강의 개수가 " + dayOffs + "개 이므로, 점수는 " + score);
 
         return dayOffs;
     }
@@ -107,18 +121,21 @@ public class AllClassAlgo {
 
 
     // 1교시 수업 개수 count
+    // 1교시 수업 유무: 1교시 수업 하나당 -3
     public static int FirstClassAlgo(Table t) {
         int firstClass = 0; // 1교시 수업 개수 저장
+        int score = 0; // 점수 저장
 
         for (Class c : t.classList) {
             if (c.startH == 8) {
                 firstClass++;
+                score -= 3 ;
             }
         }
 
-        System.out.println(firstClass);
+        System.out.println("1교시의 개수가 " + firstClass + "개 이므로, 점수는 " + score);
 
-        return firstClass;
+        return score;
     }
 
     // 강의 장소 모두 같은지 판별
