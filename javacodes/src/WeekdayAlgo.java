@@ -2,37 +2,39 @@ import java.util.*;
 
 public class WeekdayAlgo {
     public static void main(String[] args) {
-//
-//
 //        WeekdayAlgo algo = new WeekdayAlgo();
 //        Object[] result = algo.weekdayAlgo(table, move);
 //
 //        int oneClass = (int) result[0];
 //        Map<String, Integer> score = (Map<String, Integer>) result[1];
 //        int noLunchCnt = (int) result[2];
-//
-//        // 결과 사용 (생략)
     }
 
-    private int oneClass;
-    private Map<String, Integer> score;
-    private int noLunchCnt;
+    public static int oneClass;
+    public static Map<String, Integer> score;
+    public static int noLunchCnt;
 
-    public Object[] weekdayAlgo(Table table) {
+    public static Object[] weekdayAlgo(Table table, Map<String, Move> moveDifficulty) {
+
         oneClass = 0;
         score = new HashMap<>();
         noLunchCnt = 0;
 
-//        dayAlgo(table.monday);
-//        dayAlgo(table.tuesday);
-//        dayAlgo(table.wednesday);
-//        dayAlgo(table.thursday);
-//        dayAlgo(table.friday);
+        dayAlgo(table.monday, moveDifficulty);
+        dayAlgo(table.tuesday, moveDifficulty);
+        dayAlgo(table.wednesday, moveDifficulty);
+        dayAlgo(table.thursday, moveDifficulty);
+        dayAlgo(table.friday, moveDifficulty);
+
+        System.out.println(oneClass);
+        System.out.println(score);
+        System.out.println(noLunchCnt);
 
         return new Object[]{oneClass, score, noLunchCnt};
     }
 
-    private void dayAlgo(List<Class> day, Move moveDifficulty) {
+    private static void dayAlgo(List<Class> day, Map<String, Move> moveDifficulty) {
+
         day.sort((a, b) -> {
             if (a.startH < b.startH || (a.startH == b.startH && a.startM < b.startM))
                 return -1;
@@ -70,8 +72,10 @@ public class WeekdayAlgo {
                 maxCnt = Math.max(maxCnt, rowCnt);
 
                 List<String> locationPair = Arrays.asList(current.location, next.location);
-                move = moveDifficulty;
+                move = moveDifficulty.get(current.location);
 
+//                System.out.println(move);
+//                System.out.println(moveDifficulty.get("학관").uphill);
                 if (move.uphill) {
                     score.put("uphill", score.getOrDefault("uphill", 0) - 3);
                 }
