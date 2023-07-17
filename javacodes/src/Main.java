@@ -128,18 +128,23 @@ public class Main {
         moveDifficulty.put(Arrays.asList("ECC", "학관"), new Move(true, Difficulty.HIGH));
         moveDifficulty.put(Arrays.asList("공대", "학관"), new Move(false, Difficulty.HIGH));
 
-        //for(Table t : data4) WeekdayAlgo.weekdayAlgo(t, moveDifficulty);
+        testData(data4, moveDifficulty);
+    }
 
-        System.out.println("========== algorithm test - 전체 ==========");
-
-        for(Table t : data3){
+    public static void testData(ArrayList<Table> data, Map<List<String>, Move> moveDifficulty){
+        for(Table t : data){
             ArrayList<Integer> good = new ArrayList<>();
             ArrayList<Integer> bad = new ArrayList<>();
             ArrayList<Integer> special = new ArrayList<>();
 
-            int score = 0;
+            int score = 60; // 기본 점수 60점 
+
+            System.out.println("========== algorithm test - 전체 ==========");
             score += AllClassAlgo.allClassAlgo(t, good, bad, special);
-            //score += WeekdayAlgo.weekdayAlgo(t, good, bad, special);
+            System.out.println("");
+            System.out.println("========== algorithm test - 요일별 ==========");
+            score += WeekdayAlgo.weekdayAlgo(t, moveDifficulty, good, bad, special);
+
             Collections.sort(good);
             Collections.sort(bad);
             Collections.sort(special);
@@ -147,11 +152,9 @@ public class Main {
             System.out.println("good: " + good);
             System.out.println("bad: " + bad);
             System.out.println("special: " + special);
+            System.out.println("총점: " + score);
             System.out.println("===========================================");
         }
-
-        
-        //System.out.println("========== algorithm test - 요일별 ==========");
     }
 
     /*
@@ -166,50 +169,50 @@ public class Main {
         classId++;
         result.add(new Class(classId, "학관과목1", "학관", "월", 11, 0, 12, 30));
         classId++;
-        result.add(new Class(classId, "학관과목1", "학관", "수", 9, 30, 11, 00));
+        result.add(new Class(classId, "학관과목1", "학관", "수", 9, 30, 11, 0));
 
         classId++;
-        result.add(new Class(classId, "학관과목2", "학관", "월", 9, 30, 11, 00));
+        result.add(new Class(classId, "학관과목2", "학관", "월", 9, 30, 11, 0));
         classId++;
         result.add(new Class(classId, "학관과목2", "학관", "수", 11, 0, 12, 30));
 
         classId++;
         result.add(new Class(classId, "학관과목3", "학관", "월", 14, 0, 15, 30));
         classId++;
-        result.add(new Class(classId, "학관과목3", "학관", "수", 15, 30, 17, 00));
+        result.add(new Class(classId, "학관과목3", "학관", "수", 15, 30, 17, 0));
 
         classId++;
-        result.add(new Class(classId, "학관과목4", "학관", "월", 15, 30, 17, 00));
+        result.add(new Class(classId, "학관과목4", "학관", "월", 15, 30, 17, 0));
         classId++;
         result.add(new Class(classId, "학관과목4", "학관", "수", 14, 0, 15, 30));
 
         classId++;
         result.add(new Class(classId, "학관과목5", "학관", "화", 11, 0, 12, 30));
         classId++;
-        result.add(new Class(classId, "학관과목5", "학관", "목", 12, 30, 14, 00));
+        result.add(new Class(classId, "학관과목5", "학관", "목", 12, 30, 14, 0));
 
         classId++;
-        result.add(new Class(classId, "학관과목6", "학관", "화", 12, 30, 14, 00));
+        result.add(new Class(classId, "학관과목6", "학관", "화", 12, 30, 14, 0));
         classId++;
         result.add(new Class(classId, "학관과목6", "학관", "목", 14, 0, 15, 30));
 
         classId++;
         result.add(new Class(classId, "학관과목7", "학관", "월", 8, 0, 9, 30));
         classId++;
-        result.add(new Class(classId, "학관과목7", "학관", "수", 9, 30, 11, 00));
+        result.add(new Class(classId, "학관과목7", "학관", "수", 9, 30, 11, 0));
 
         classId++;
-        result.add(new Class(classId, "학관과목8", "학관", "월", 9, 30, 11, 00));
+        result.add(new Class(classId, "학관과목8", "학관", "월", 9, 30, 11, 0));
         classId++;
         result.add(new Class(classId, "학관과목8", "학관", "수", 8, 0, 9, 30));
 
         classId++;
         result.add(new Class(classId, "학관과목9", "학관", "화", 8, 0, 9, 30));
         classId++;
-        result.add(new Class(classId, "학관과목9", "학관", "목", 9, 30, 11, 00));
+        result.add(new Class(classId, "학관과목9", "학관", "목", 9, 30, 11, 0));
 
         classId++;
-        result.add(new Class(classId, "학관과목10", "학관", "화", 9, 30, 11, 00));
+        result.add(new Class(classId, "학관과목10", "학관", "화", 9, 30, 11, 0));
         classId++;
         result.add(new Class(classId, "학관과목10", "학관", "목", 8, 0, 9, 30));
 
@@ -226,21 +229,21 @@ public class Main {
         classId++;
         result.add(new Class(classId, "학관과목13", "학관", "화", 14, 0, 15, 30));
         classId++;
-        result.add(new Class(classId, "학관과목13", "학관", "수", 15, 30, 17, 00));
+        result.add(new Class(classId, "학관과목13", "학관", "수", 15, 30, 17, 0));
 
         classId++;
         result.add(new Class(classId, "학관과목14", "학관", "화", 14, 0, 15, 30));
         classId++;
-        result.add(new Class(classId, "학관과목14", "학관", "목", 15, 30, 17, 00));
+        result.add(new Class(classId, "학관과목14", "학관", "목", 15, 30, 17, 0));
 
         classId++;
-        result.add(new Class(classId, "학관과목15", "학관", "화", 11, 0, 14, 00));
+        result.add(new Class(classId, "학관과목15", "학관", "화", 11, 0, 14, 0));
 
         classId++;
         result.add(new Class(classId, "학관과목16", "학관", "목",  12, 30, 15, 30));
 
         classId++;
-        result.add(new Class(classId, "학관과목17", "학관", "금",  11, 0, 14, 00));
+        result.add(new Class(classId, "학관과목17", "학관", "금",  11, 0, 14, 0));
 
         return result;
 
@@ -255,19 +258,19 @@ public class Main {
         classId++;
         result.add(new Class(classId, "ECC과목1", "ECC", "월", 11, 0, 12, 30));
         classId++;
-        result.add(new Class(classId, "ECC과목1", "ECC", "수", 9, 30, 11, 00));
+        result.add(new Class(classId, "ECC과목1", "ECC", "수", 9, 30, 11, 0));
 
         // 학관과목3 의 위치만 ECC로 바꾼 것
         classId++;
         result.add(new Class(classId, "ECC과목2", "ECC", "월", 14, 0, 15, 30));
         classId++;
-        result.add(new Class(classId, "ECC과목2", "ECC", "수", 15, 30, 17, 00));
+        result.add(new Class(classId, "ECC과목2", "ECC", "수", 15, 30, 17, 0));
 
         // 학관과목5 의 위치만 ECC로 바꾼 것
         classId++;
         result.add(new Class(classId, "ECC과목3", "ECC", "화", 11, 0, 12, 30));
         classId++;
-        result.add(new Class(classId, "ECC과목3", "ECC", "목", 12, 30, 14, 00));
+        result.add(new Class(classId, "ECC과목3", "ECC", "목", 12, 30, 14, 0));
 
         return result;
     }
@@ -281,19 +284,19 @@ public class Main {
         classId++;
         result.add(new Class(classId, "공대과목1", "공대", "월", 11, 0, 12, 30));
         classId++;
-        result.add(new Class(classId, "공대과목1", "공대", "수", 9, 30, 11, 00));
+        result.add(new Class(classId, "공대과목1", "공대", "수", 9, 30, 11, 0));
 
         // 학관과목3 의 위치만 공대로 바꾼 것
         classId++;
         result.add(new Class(classId, "공대과목2", "공대", "월", 14, 0, 15, 30));
         classId++;
-        result.add(new Class(classId, "공대과목2", "공대", "수", 15, 30, 17, 00));
+        result.add(new Class(classId, "공대과목2", "공대", "수", 15, 30, 17, 0));
 
         // 학관과목5 의 위치만 공대로 바꾼 것
         classId++;
         result.add(new Class(classId, "공대과목3", "공대", "화", 11, 0, 12, 30));
         classId++;
-        result.add(new Class(classId, "공대과목3", "공대", "목", 12, 30, 14, 00));
+        result.add(new Class(classId, "공대과목3", "공대", "목", 12, 30, 14, 0));
 
 
         return result;
@@ -806,10 +809,33 @@ public class Main {
 
         result.add(temp);
 
+        // 4연강이 있는 시간표
+        tableId++;
+        temp = new Table(tableId);
+        temp.classList.add(hak.get(28));
+        
+        temp.classList.add(hak.get(12));
+        temp.classList.add(hak.get(13));
+
+        temp.classList.add(hak.get(14));
+        temp.classList.add(hak.get(15));
+
+        temp.classList.add(hak.get(4));
+        temp.classList.add(hak.get(5));
+
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        temp.classList.add(hak.get(18));
+        temp.classList.add(hak.get(19));
+
+        temp.classList.add(hak.get(16));
+        temp.classList.add(hak.get(17));
+        temp = addClass(temp, temp.classList);
+        result.add(temp);
 
         // 데이터리스트 리턴
         return result;
-
     }
 
     // 이동난이도 차이에 따른 점수 변동 확인을 위한 데이터리스트를 생성하는 함수
