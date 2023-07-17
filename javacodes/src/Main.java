@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /*
 *   데이터 생성을 수행하는 메인 코드
@@ -158,8 +155,15 @@ public class Main {
 
         System.out.println("========== algorithm test - 요일별 ==========");
 
-//        Map<List<String>, Move> moveDifficulty = new HashMap<>();
-        for(Table t : data4) WeekdayAlgo.weekdayAlgo(t, fromHak);
+        Map<List<String>, Move> moveDifficulty = new HashMap<>();
+        moveDifficulty.put(Arrays.asList("학관", "학관"), new Move(false, Difficulty.LOW));
+        moveDifficulty.put(Arrays.asList("학관", "ECC"), new Move(false, Difficulty.MEDIUM));
+        moveDifficulty.put(Arrays.asList("학관", "공대"), new Move(true, Difficulty.HIGH));
+        moveDifficulty.put(Arrays.asList("ECC", "학관"), new Move(true, Difficulty.HIGH));
+        moveDifficulty.put(Arrays.asList("공대", "학관"), new Move(false, Difficulty.HIGH));
+
+        for(Table t : data4) WeekdayAlgo.weekdayAlgo(t, moveDifficulty);
+
 
     }
 
