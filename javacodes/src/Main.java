@@ -25,33 +25,6 @@ public class Main {
     메인 함수
      */
     public static void main(String[] args) {
-
-        /*
-        이동 난이도 DB 생성
-         */
-        // 본 코드에서 생성되는 테스트데이터를 채점하기 위해 필요한 조합만을 저장하였습니다
-        Map<String, Move> fromHak = new HashMap<>();    // 학관에서 출발하는 이동 난이도를 저장하는 해시맵 선언
-        Map<String, Move> fromEcc = new HashMap<>();    // ECC에서 출발하는 이동 난이도를 저장하는 해시맵 선언
-        Map<String, Move> fromEng = new HashMap<>();    // 공대에서 출발하는 이동 난이도를 저장하는 해시맵 선언
-
-        // 학관에서 학관으로의 이동 난이도 저장
-        fromHak.put("학관", new Move(false, Difficulty.LOW));
-        // 학관에서 ECC로의 이동 난이도 저장
-        fromHak.put("ECC", new Move(false, Difficulty.MEDIUM));
-        // 학관에서 공대로의 이동 난이도 저장
-        fromHak.put("공대", new Move(true, Difficulty.HIGH));
-
-        // ECC에서 학관으로의 이동 난이도 저장
-        fromEcc.put("학관", new Move(true, Difficulty.HIGH));
-
-        // 공대에서 학관으로의 이동 난이도 저장
-        fromEng.put("학관", new Move(false, Difficulty.HIGH));
-
-
-        /*
-        수업 데이터 생성
-         */
-
         // 수업 ID 값 0으로 초기화
         classId = 0L;
 
@@ -100,11 +73,6 @@ public class Main {
         /*
         아래는 데이터가 잘 생성되었는지 테스트하는 프린트 코드
          */
-
-//        printClasses(hak);  // 학관 수업들
-//        printClasses(ecc);  // ECC 수업들
-//        printClasses(eng);  // 공대 수업들
-//        printClasses(km); // kmooc 수업들
 //
 //        printTables(data1);
 //        printTables(data2);
@@ -153,8 +121,6 @@ public class Main {
 //        System.out.println("모두 오후 수업인지 판별");
 //        for(Table t : data2) AllClassAlgo.allAfternoonAlgo(t);
 
-        System.out.println("========== algorithm test - 요일별 ==========");
-
         Map<List<String>, Move> moveDifficulty = new HashMap<>();
         moveDifficulty.put(Arrays.asList("학관", "학관"), new Move(false, Difficulty.LOW));
         moveDifficulty.put(Arrays.asList("학관", "ECC"), new Move(false, Difficulty.MEDIUM));
@@ -162,9 +128,30 @@ public class Main {
         moveDifficulty.put(Arrays.asList("ECC", "학관"), new Move(true, Difficulty.HIGH));
         moveDifficulty.put(Arrays.asList("공대", "학관"), new Move(false, Difficulty.HIGH));
 
-        for(Table t : data4) WeekdayAlgo.weekdayAlgo(t, moveDifficulty);
+        //for(Table t : data4) WeekdayAlgo.weekdayAlgo(t, moveDifficulty);
 
+        System.out.println("========== algorithm test - 전체 ==========");
 
+        for(Table t : data3){
+            ArrayList<Integer> good = new ArrayList<>();
+            ArrayList<Integer> bad = new ArrayList<>();
+            ArrayList<Integer> special = new ArrayList<>();
+
+            int score = 0;
+            score += AllClassAlgo.allClassAlgo(t, good, bad, special);
+            //score += WeekdayAlgo.weekdayAlgo(t, good, bad, special);
+            Collections.sort(good);
+            Collections.sort(bad);
+            Collections.sort(special);
+
+            System.out.println("good: " + good);
+            System.out.println("bad: " + bad);
+            System.out.println("special: " + special);
+            System.out.println("===========================================");
+        }
+
+        
+        //System.out.println("========== algorithm test - 요일별 ==========");
     }
 
     /*
@@ -177,83 +164,83 @@ public class Main {
         ArrayList<Class> result = new ArrayList<>();
 
         classId++;
-        result.add(new Class(classId, "학관과목1", "학관", "월", 11, 0, 12, 15));
+        result.add(new Class(classId, "학관과목1", "학관", "월", 11, 0, 12, 30));
         classId++;
-        result.add(new Class(classId, "학관과목1", "학관", "수", 9, 30, 10, 45));
+        result.add(new Class(classId, "학관과목1", "학관", "수", 9, 30, 11, 00));
 
         classId++;
-        result.add(new Class(classId, "학관과목2", "학관", "월", 9, 30, 10, 45));
+        result.add(new Class(classId, "학관과목2", "학관", "월", 9, 30, 11, 00));
         classId++;
-        result.add(new Class(classId, "학관과목2", "학관", "수", 11, 0, 12, 15));
+        result.add(new Class(classId, "학관과목2", "학관", "수", 11, 0, 12, 30));
 
         classId++;
-        result.add(new Class(classId, "학관과목3", "학관", "월", 14, 0, 15, 15));
+        result.add(new Class(classId, "학관과목3", "학관", "월", 14, 0, 15, 30));
         classId++;
-        result.add(new Class(classId, "학관과목3", "학관", "수", 15, 30, 16, 45));
+        result.add(new Class(classId, "학관과목3", "학관", "수", 15, 30, 17, 00));
 
         classId++;
-        result.add(new Class(classId, "학관과목4", "학관", "월", 15, 30, 16, 45));
+        result.add(new Class(classId, "학관과목4", "학관", "월", 15, 30, 17, 00));
         classId++;
-        result.add(new Class(classId, "학관과목4", "학관", "수", 14, 0, 15, 15));
+        result.add(new Class(classId, "학관과목4", "학관", "수", 14, 0, 15, 30));
 
         classId++;
-        result.add(new Class(classId, "학관과목5", "학관", "화", 11, 0, 12, 15));
+        result.add(new Class(classId, "학관과목5", "학관", "화", 11, 0, 12, 30));
         classId++;
-        result.add(new Class(classId, "학관과목5", "학관", "목", 12, 30, 13, 45));
+        result.add(new Class(classId, "학관과목5", "학관", "목", 12, 30, 14, 00));
 
         classId++;
-        result.add(new Class(classId, "학관과목6", "학관", "화", 12, 30, 13, 45));
+        result.add(new Class(classId, "학관과목6", "학관", "화", 12, 30, 14, 00));
         classId++;
-        result.add(new Class(classId, "학관과목6", "학관", "목", 14, 0, 15, 15));
+        result.add(new Class(classId, "학관과목6", "학관", "목", 14, 0, 15, 30));
 
         classId++;
-        result.add(new Class(classId, "학관과목7", "학관", "월", 8, 0, 9, 15));
+        result.add(new Class(classId, "학관과목7", "학관", "월", 8, 0, 9, 30));
         classId++;
-        result.add(new Class(classId, "학관과목7", "학관", "수", 9, 30, 10, 45));
+        result.add(new Class(classId, "학관과목7", "학관", "수", 9, 30, 11, 00));
 
         classId++;
-        result.add(new Class(classId, "학관과목8", "학관", "월", 9, 30, 10, 45));
+        result.add(new Class(classId, "학관과목8", "학관", "월", 9, 30, 11, 00));
         classId++;
-        result.add(new Class(classId, "학관과목8", "학관", "수", 8, 0, 9, 15));
+        result.add(new Class(classId, "학관과목8", "학관", "수", 8, 0, 9, 30));
 
         classId++;
-        result.add(new Class(classId, "학관과목9", "학관", "화", 8, 0, 9, 15));
+        result.add(new Class(classId, "학관과목9", "학관", "화", 8, 0, 9, 30));
         classId++;
-        result.add(new Class(classId, "학관과목9", "학관", "목", 9, 30, 10, 45));
+        result.add(new Class(classId, "학관과목9", "학관", "목", 9, 30, 11, 00));
 
         classId++;
-        result.add(new Class(classId, "학관과목10", "학관", "화", 9, 30, 10, 45));
+        result.add(new Class(classId, "학관과목10", "학관", "화", 9, 30, 11, 00));
         classId++;
-        result.add(new Class(classId, "학관과목10", "학관", "목", 8, 0, 9, 15));
+        result.add(new Class(classId, "학관과목10", "학관", "목", 8, 0, 9, 30));
 
         classId++;
-        result.add(new Class(classId, "학관과목11", "학관", "월", 11, 0, 12, 15));
+        result.add(new Class(classId, "학관과목11", "학관", "월", 11, 0, 12, 30));
         classId++;
-        result.add(new Class(classId, "학관과목11", "학관", "수", 14, 0, 15, 15));
+        result.add(new Class(classId, "학관과목11", "학관", "수", 14, 0, 15, 30));
 
         classId++;
-        result.add(new Class(classId, "학관과목12", "학관", "월", 11, 0, 12, 15));
+        result.add(new Class(classId, "학관과목12", "학관", "월", 11, 0, 12, 30));
         classId++;
-        result.add(new Class(classId, "학관과목12", "학관", "수", 11, 0, 12, 15));
+        result.add(new Class(classId, "학관과목12", "학관", "수", 11, 0, 12, 30));
 
         classId++;
-        result.add(new Class(classId, "학관과목13", "학관", "화", 14, 0, 15, 15));
+        result.add(new Class(classId, "학관과목13", "학관", "화", 14, 0, 15, 30));
         classId++;
-        result.add(new Class(classId, "학관과목13", "학관", "수", 15, 30, 16, 45));
+        result.add(new Class(classId, "학관과목13", "학관", "수", 15, 30, 17, 00));
 
         classId++;
-        result.add(new Class(classId, "학관과목14", "학관", "화", 14, 0, 15, 15));
+        result.add(new Class(classId, "학관과목14", "학관", "화", 14, 0, 15, 30));
         classId++;
-        result.add(new Class(classId, "학관과목14", "학관", "목", 15, 30, 16, 45));
+        result.add(new Class(classId, "학관과목14", "학관", "목", 15, 30, 17, 00));
 
         classId++;
-        result.add(new Class(classId, "학관과목15", "학관", "화", 11, 0, 13, 45));
+        result.add(new Class(classId, "학관과목15", "학관", "화", 11, 0, 14, 00));
 
         classId++;
-        result.add(new Class(classId, "학관과목16", "학관", "목",  12, 30, 15, 15));
+        result.add(new Class(classId, "학관과목16", "학관", "목",  12, 30, 15, 30));
 
         classId++;
-        result.add(new Class(classId, "학관과목17", "학관", "금",  11, 0, 13, 45));
+        result.add(new Class(classId, "학관과목17", "학관", "금",  11, 0, 14, 00));
 
         return result;
 
@@ -266,21 +253,21 @@ public class Main {
 
         // 학관과목1 의 위치만 ECC로 바꾼 것
         classId++;
-        result.add(new Class(classId, "ECC과목1", "ECC", "월", 11, 0, 12, 15));
+        result.add(new Class(classId, "ECC과목1", "ECC", "월", 11, 0, 12, 30));
         classId++;
-        result.add(new Class(classId, "ECC과목1", "ECC", "수", 9, 30, 10, 45));
+        result.add(new Class(classId, "ECC과목1", "ECC", "수", 9, 30, 11, 00));
 
         // 학관과목3 의 위치만 ECC로 바꾼 것
         classId++;
-        result.add(new Class(classId, "ECC과목2", "ECC", "월", 14, 0, 15, 15));
+        result.add(new Class(classId, "ECC과목2", "ECC", "월", 14, 0, 15, 30));
         classId++;
-        result.add(new Class(classId, "ECC과목2", "ECC", "수", 15, 30, 16, 45));
+        result.add(new Class(classId, "ECC과목2", "ECC", "수", 15, 30, 17, 00));
 
         // 학관과목5 의 위치만 ECC로 바꾼 것
         classId++;
-        result.add(new Class(classId, "ECC과목3", "ECC", "화", 11, 0, 12, 15));
+        result.add(new Class(classId, "ECC과목3", "ECC", "화", 11, 0, 12, 30));
         classId++;
-        result.add(new Class(classId, "ECC과목3", "ECC", "목", 12, 30, 13, 45));
+        result.add(new Class(classId, "ECC과목3", "ECC", "목", 12, 30, 14, 00));
 
         return result;
     }
@@ -292,21 +279,21 @@ public class Main {
 
         // 학관과목1 의 위치만 공대로 바꾼 것
         classId++;
-        result.add(new Class(classId, "공대과목1", "공대", "월", 11, 0, 12, 15));
+        result.add(new Class(classId, "공대과목1", "공대", "월", 11, 0, 12, 30));
         classId++;
-        result.add(new Class(classId, "공대과목1", "공대", "수", 9, 30, 10, 45));
+        result.add(new Class(classId, "공대과목1", "공대", "수", 9, 30, 11, 00));
 
         // 학관과목3 의 위치만 공대로 바꾼 것
         classId++;
-        result.add(new Class(classId, "공대과목2", "공대", "월", 14, 0, 15, 15));
+        result.add(new Class(classId, "공대과목2", "공대", "월", 14, 0, 15, 30));
         classId++;
-        result.add(new Class(classId, "공대과목2", "공대", "수", 15, 30, 16, 45));
+        result.add(new Class(classId, "공대과목2", "공대", "수", 15, 30, 17, 00));
 
         // 학관과목5 의 위치만 공대로 바꾼 것
         classId++;
-        result.add(new Class(classId, "공대과목3", "공대", "화", 11, 0, 12, 15));
+        result.add(new Class(classId, "공대과목3", "공대", "화", 11, 0, 12, 30));
         classId++;
-        result.add(new Class(classId, "공대과목3", "공대", "목", 12, 30, 13, 45));
+        result.add(new Class(classId, "공대과목3", "공대", "목", 12, 30, 14, 00));
 
 
         return result;
