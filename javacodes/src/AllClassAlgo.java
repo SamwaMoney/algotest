@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class AllClassAlgo {
     public static void main(String[] args) {
@@ -16,6 +13,12 @@ public class AllClassAlgo {
         int allCount = 0; // 모든 강의의 수 저장
         int online = 0; // 원격/온라인 강의의 수 저장
         int score = 0; // 점수 저장
+        int allBlockCount = t.classList.size(); // 전체 수업 단위 수 저장
+        int chapelCount = ChapelAlgo(t); // 전체 채플 수
+
+        ArrayList<Integer> good = new ArrayList<>();
+        ArrayList<Integer> bad = new ArrayList<>();
+        ArrayList<Integer> special = new ArrayList<>();
 
         for (Class c : t.classList) {
             if (c.location.equals("원격/비대면")) {
@@ -29,7 +32,21 @@ public class AllClassAlgo {
 
         allCount = allClasses.size();
 
+        if(allBlockCount <= 6)
+            special.add(0); // special comment id 0 취미는 학교 다니기
+        else if (allBlockCount >= 14)
+            special.add(1); // special comment id 1 등록금 뿌린 대로 거두자
 
+        if (online >= 3)
+            special.add(2); // special comment id 2 이화 사이버 대학교
+        if (online >= 2)
+            good.add(10); // good comment id 10 비대면 강의 있음
+
+        if (chapelCount >= 2)
+            special.add(3); // special comment id 3 하나님의 축복이 끝이 없네
+
+        DayoffAlgo(t, good, bad); // 공강 관련 가감점 및 코멘트 처리 함수 
+        
         System.out.println("과목의 개수가 " + allCount + "개이고, 원격/온라인 강의의 개수는 " + online +"개 이므로, 점수는 " + score);
 
         return score;
@@ -37,41 +54,63 @@ public class AllClassAlgo {
 
     // 공강 개수 count
     // 요일 공강 하나당 +10
-    public static int DayoffAlgo(Table t) {
+    public static void DayoffAlgo(Table t, ArrayList<Integer> good, ArrayList<Integer> bad) {
 
-        int dayOffs = 0; // 공강 개수 저장
+        boolean[] dayOffs = new boolean[5]; // 공강 여부 저장하는 배열
         int score = 0; // 점수 저장
+        int dayOffCnt = 0;
 
         // mon
         if (t.monday.isEmpty()) {
-            dayOffs++;
+            dayOffs[0] = true;
         }
 
         // tue
         if (t.tuesday.isEmpty()) {
-            dayOffs++;
+            dayOffs[1] = true;
         }
 
         // wed
         if (t.wednesday.isEmpty()) {
-            dayOffs++;
+            dayOffs[2] = true;
         }
 
         // thu
         if (t.thursday.isEmpty()) {
-            dayOffs++;
+            dayOffs[3] = true;
         }
 
         // fri
         if (t.friday.isEmpty()) {
-            dayOffs++;
+            dayOffs[4] = true;
+            good.add(7); // good comment id 7 최고 인기 금공강!
         }
 
-        score = dayOffs * 10;
+        for (int i=0; i<5; i++){
+            if(dayOffs[i] == true)
+                dayOffCnt++;
+        }
 
-        System.out.println("요일 공강의 개수가 " + dayOffs + "개 이므로, 점수는 " + score);
+        score += dayOffCnt * 10;
 
-        return dayOffs;
+        if (dayOffCnt == 1){
+            for (int i=0; i<5; i++){
+                if(dayOffs[i] == true){
+                    good.add(i); // good comment id i 기분 좋은 _요일
+                    break;
+                }
+            }
+        } else if (dayOffCnt == 2){
+            good.add(5); // good comment id 5 행복한 2공강
+        } else if (dayOffCnt == 3){
+            good.add(6); // good comment id 6 엄청난 3공강 
+        } else if (dayOffCnt == 0){
+            bad.add(4); // bad comment id 4 공강 1도 없어
+        }
+
+        System.out.println("요일 공강의 개수가 " + dayOffCnt + "개 이므로, 점수는 " + score);
+
+        return;
     }
 
     // 채플 개수 count
