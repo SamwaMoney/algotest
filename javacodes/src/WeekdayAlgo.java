@@ -14,7 +14,7 @@ public class WeekdayAlgo {
     public static Map<String, Integer> score;
     public static int noLunchCnt;
 
-    public static Object[] weekdayAlgo(Table table, Map<String, Move> moveDifficulty) {
+    public static Object[] weekdayAlgo(Table table, Map<List<String>, Move> moveDifficulty) {
 
         oneClass = 0;
         score = new HashMap<>();
@@ -25,15 +25,15 @@ public class WeekdayAlgo {
         dayAlgo(table.wednesday, moveDifficulty);
         dayAlgo(table.thursday, moveDifficulty);
         dayAlgo(table.friday, moveDifficulty);
-
-        System.out.println(oneClass);
-        System.out.println(score);
-        System.out.println(noLunchCnt);
+//
+//        System.out.println(oneClass);
+//        System.out.println(score);
+//        System.out.println(noLunchCnt);
 
         return new Object[]{oneClass, score, noLunchCnt};
     }
 
-    private static void dayAlgo(List<Class> day, Map<String, Move> moveDifficulty) {
+    private static void dayAlgo(List<Class> day, Map<List<String>, Move> moveDifficulty) {
 
         day.sort((a, b) -> {
             if (a.startH < b.startH || (a.startH == b.startH && a.startM < b.startM))
@@ -62,7 +62,7 @@ public class WeekdayAlgo {
                 diff = (next.startH - current.endH) * 60 + (next.startM - current.endM);
             }
 
-            if (diff <= 15) {
+            if (diff == 0) {
                 if (inARow) {
                     rowCnt++;
                 } else {
@@ -72,10 +72,8 @@ public class WeekdayAlgo {
                 maxCnt = Math.max(maxCnt, rowCnt);
 
                 List<String> locationPair = Arrays.asList(current.location, next.location);
-                move = moveDifficulty.get(current.location);
+                move = moveDifficulty.get(locationPair);
 
-//                System.out.println(move);
-//                System.out.println(moveDifficulty.get("학관").uphill);
                 if (move.uphill) {
                     score.put("uphill", score.getOrDefault("uphill", 0) - 3);
                 }
@@ -113,4 +111,5 @@ public class WeekdayAlgo {
             }
         }
     }
+
 }
