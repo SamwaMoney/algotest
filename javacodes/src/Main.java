@@ -145,6 +145,11 @@ public class Main {
             System.out.println("========== algorithm test - 요일별 ==========");
             score += WeekdayAlgo.weekdayAlgo(t, moveDifficulty, good, bad, special);
 
+            if (score < 0)
+                score = 0;
+            else if (score > 100)
+                score = 100;
+
             Collections.sort(good);
             Collections.sort(bad);
             Collections.sort(special);
