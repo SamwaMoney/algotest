@@ -11,23 +11,31 @@ public class AllClassAlgo {
         Set<String> allClasses = new HashSet<>(); // 모든 강의 리스트
 
         int allCount = 0; // 모든 강의의 수 저장
-        int online = 0; // 원격/온라인 강의의 수 저장
-        int score = 0; // 점수 저장
-        int allBlockCount = t.classList.size(); // 전체 수업 단위 수 저장 - 연강인 블럭 입력 받았을 때 처리가 필요함
+        int online = 0; // 원격/비대면 강의의 수 저장
+        int score = 0; // 가/감점된 점수 저장
+        int totalTime = 0; // 전체 수업 시간 분 단위로 저장
+        int allBlockCount = 0; // 전체 수업 블럭 수 저장 (90분 단위) 
         int chapelCount = ChapelAlgo(t); // 전체 채플 수
-        int locationCount = locationAlgo(t, special); // 전체 강의실 건물 수 
+        int locationCount = locationAlgo(t); // 전체 강의실 건물 수 
 
         for (Class c : t.classList) {
-            if (c.location.equals("원격/비대면")) {
-                score += 3;
+            if (c.location.equals("원격/비대면"))
                 online++;
-            } else {
-                score++;
-            }
             allClasses.add(c.className);
+            totalTime += (c.endH - c.startH) * 60 + (c.endM - c.startM);
         }
+        allBlockCount = totalTime / 90;
+        System.out.println("총 수업시간은 " + totalTime + ", 총 블럭 수는 " + allBlockCount);
 
         allCount = allClasses.size();
+
+        if (allCount <= 6){
+            score += (allCount - online); // 수업 하나당 1점씩 
+        } else {
+            score += (6 - online); // 수업이 77개 이상이라도 6개까지만 가점
+        }
+        score += (online * 3); // 원격/비대면 강의당 3점씩 가점
+        System.out.println("강의 개수에 의한 가점은 " + score);
 
         if(allBlockCount <= 6)
             special.add(0); // special comment id 0 취미는 학교 다니기
@@ -48,16 +56,19 @@ public class AllClassAlgo {
         if (allAfternoonAlgo(t))
             special.add(4); // special comment id 4 상여자 특) 점심 먹고 등교함
 
-        if (locationCount == 1)
+        if (locationCount == 1){
             good.add(11); // good comment id 11 나는 한 건물만 판다
-        else if (locationCount >= 4)
+            special.add(13); // special comment id 13 00 건물 지박령 - 교체 예정
+        }
+        else if (locationCount >= 4){
             special.add(8); // special comment id 8 동에 번쩍 서에 번쩍
+        }
 
-        System.out.println("과목의 개수가 " + allCount + "개이고, 원격/온라인 강의의 개수는 " + online +"개 이므로, 점수는 " + score);
+        System.out.println("과목의 개수가 " + allCount + "개이고, 원격/온라인 강의의 개수는 " + online +"개 이므로, 총 점수는 " + score);
 
         return score;
+    
     }
-
     // 공강 개수 count
     // 요일 공강 하나당 +10
     public static int DayoffAlgo(Table t, ArrayList<Integer> good, ArrayList<Integer> bad) {
@@ -114,7 +125,7 @@ public class AllClassAlgo {
             bad.add(4); // bad comment id 4 공강 1도 없어
         }
 
-        System.out.println("요일 공강의 개수가 " + dayOffCnt + "개 이므로, 점수는 " + score);
+        System.out.println("요일 공강의 개수가 " + dayOffCnt + "개 이므로, 공강에 의한 가점은 " + score);
 
         return score;
     }
@@ -129,7 +140,7 @@ public class AllClassAlgo {
             }
         }
 
-        System.out.println(chapel);
+        System.out.println("채플 수: " + chapel);
 
         return chapel;
     }
@@ -144,7 +155,7 @@ public class AllClassAlgo {
             }
         }
 
-        System.out.println(online);
+        System.out.println("원격/비대면 강의 수: " + online);
 
         return online;
     }
@@ -159,7 +170,7 @@ public class AllClassAlgo {
             }
         }
 
-        System.out.println(morningClass);
+        System.out.println("1, 2교시 수업 수 " + morningClass);
 
         return morningClass;
     }
@@ -183,13 +194,13 @@ public class AllClassAlgo {
         else if (firstClass >= 2)
             bad.add(1); // bad comment id 1 오전부터 바빠요!
         
-        System.out.println("1교시의 개수가 " + firstClass + "개 이므로, 점수는 " + score);
+        System.out.println("1교시의 개수가 " + firstClass + "개 이므로, 1교시에 의한 감점은 " + score);
 
         return score;
     }
 
     // 강의 장소 수 세는 알고리즘
-    public static int locationAlgo(Table t, ArrayList<Integer> special) {
+    public static int locationAlgo(Table t) {
 
         Set<String> locations = new HashSet<>(); // 강의 장소 저장
         int locationNum = 0; // 강의 장소의 수 저장
@@ -202,15 +213,7 @@ public class AllClassAlgo {
         }
 
         locationNum = locations.size();
-
-        if (locationNum == 1){
-            Iterator<String> itr = locations.iterator();
-            switch (itr.next()) {
-                case value:
-                    
-                    break;
-            }
-        }
+        System.out.println("건물 수: " + locationNum);
 
         return locationNum;
     }
@@ -221,11 +224,11 @@ public class AllClassAlgo {
             if (c.endH < 12) {
                 continue;
             } else {
-                System.out.println(false);
+                System.out.println("강의 모두 오전 아님");
                 return false;
             }
         }
-        System.out.println(true);
+        System.out.println("강의 모두 오전");
         return true;
     }
 
@@ -235,11 +238,11 @@ public class AllClassAlgo {
             if (c.startH >= 12) {
                 continue;
             } else {
-                System.out.println(false);
+                System.out.println("강의 모두 오후 아님");
                 return false;
             }
         }
-        System.out.println(true);
+        System.out.println("강의 모두 오후");
         return true;
     }
 }
