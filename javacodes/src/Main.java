@@ -83,6 +83,7 @@ public class Main {
 //        printTables(data4);
 //        printTables(data5);
 //        printTables(data6);
+        printTables(data7);
 
 //        System.out.println("========== algorithm test - 전체 ==========");
 //
@@ -125,18 +126,12 @@ public class Main {
 //        for(Table t : data2) AllClassAlgo.allAfternoonAlgo(t);
 
         // 이동난이도 해시맵 생성
-        Map<List<String>, Move> moveDifficulty = new HashMap<>();
-        moveDifficulty.put(Arrays.asList("학관", "학관"), new Move(false, Difficulty.LOW));
-        moveDifficulty.put(Arrays.asList("학관", "ECC"), new Move(false, Difficulty.MEDIUM));
-        moveDifficulty.put(Arrays.asList("학관", "공학관"), new Move(true, Difficulty.HIGH));
-        moveDifficulty.put(Arrays.asList("ECC", "학관"), new Move(true, Difficulty.HIGH));
-        moveDifficulty.put(Arrays.asList("공학관", "학관"), new Move(false, Difficulty.HIGH));
-
+        Map<List<String>, Move> moveDifficulty = makeMoveDifficulties();
         // 스페셜 코멘트 해시맵 생성
         Map<Long, SpecialComment> specialComments = makeSpecialComments();
 
         // 채점 수행
-        testData(data4, moveDifficulty, specialComments);
+        testData(data7, moveDifficulty, specialComments);
     }
 
     /*
@@ -1244,27 +1239,410 @@ public class Main {
         temp = new Table(tableId);
 
         classId++;
-        temp.classList.add(new Class(classId, "인공지능", "공학관"));
-        temp.classList.add(hak.get(1));
-
-        temp.classList.add(hak.get(2));
-        temp.classList.add(hak.get(3));
-
-        temp.classList.add(hak.get(4));
-        temp.classList.add(hak.get(5));
-
-        temp.classList.add(hak.get(6));
-        temp.classList.add(hak.get(7));
-
-        temp.classList.add(hak.get(8));
-        temp.classList.add(hak.get(9));
-
-        temp.classList.add(hak.get(10));
-        temp.classList.add(hak.get(11));
+        temp.classList.add(new Class(classId, "인공지능", "공학관", "월", 11, 0, 12, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "인공지능", "공학관", "수", 9, 30, 11, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "운영체제", "공학관", "월", 15, 30, 17, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "운영체제", "공학관", "수", 14, 0, 15, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "정보통신공학", "공학관", "화", 9, 30, 11, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "정보통신공학", "공학관", "금", 11, 0, 12, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "캡스톤디자인과창업프로젝트B", "공학관", "화", 12, 30, 14, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "캡스톤디자인과창업프로젝트B", "공학관", "금", 14, 0, 17, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "디지털논리설계", "공학관", "화", 14, 0, 15, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "디지털논리설계", "공학관", "목", 15, 30, 17, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "SW리더십과기업가정신세미나III", "공학관", "화", 17, 0, 18, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "채플", "대강당", "목", 11, 30, 12, 0));
 
         temp = addClass(temp, temp.classList);
 
         result.add(temp);
+
+        // 시트 2 이소정
+        tableId++;
+        temp = new Table(tableId);
+
+        classId++;
+        temp.classList.add(new Class(classId, "한국현대시와 삶읽기", "포스코관", "월", 9, 30, 11, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "한국현대시와 삶읽기", "포스코관", "목", 11, 0, 12, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "자료구조", "공학관", "월", 12, 30, 14, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "자료구조", "공학관", "목", 14, 0, 15, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "선형대수학1", "포스코관", "월", 14, 0, 15, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "선형대수학1", "포스코관", "수", 12, 30, 14, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "일반생물학", "종합과학관", "화", 14, 0, 15, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "일반생물학", "종합과학관", "목", 15, 30, 17, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "시스템sw및 실습", "공학관", "월", 17, 0, 18, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "시스템sw및 실습", "공학관", "목", 17, 0, 18, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "채플", "대강당", "수", 11, 0, 12, 0));
+
+        temp = addClass(temp, temp.classList);
+
+        result.add(temp);
+
+        // 시트 3 최한비
+        tableId++;
+        temp = new Table(tableId);
+
+        classId++;
+        temp.classList.add(new Class(classId, "일반생물학", "포스코관", "월", 12, 30, 14, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "일반생물학", "포스코관", "목", 14, 0, 15, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "기독교와세계", "학관", "월", 14, 0, 15, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "기독교와세계", "학관", "수", 12, 30, 14, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "일반물리학I", "종합과학관", "월", 15, 30, 17, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "일반물리학I", "종합과학관", "수", 14, 0, 15, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "일반물리학실험I", "종합과학관", "화", 14, 0, 15, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "미분적분학", "포스코관", "화", 15, 30, 17, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "미분적분학", "포스코관", "목", 12, 30, 14, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "CollegeEnglish", "ECC", "화", 8, 0, 9, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "CollegeEnglish", "ECC", "목", 9, 30, 11, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "호크마세미나", "원격/비대면", "화", 17, 0, 18, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "채플", "대강당", "화", 9, 30, 10 ,0));
+
+        temp = addClass(temp, temp.classList);
+
+        result.add(temp);
+
+        // 시트 4 김민정
+        tableId++;
+        temp = new Table(tableId);
+
+        classId++;
+        temp.classList.add(new Class(classId, "채플", "대강당", "월", 10, 0, 10, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "UI디자인", "sk텔레콤관(정보관)", "월", 12, 30, 15, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "컴퓨터알고리즘", "공학관", "월", 15, 30, 17, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "컴퓨터알고리즘", "공학관", "수", 14, 0, 15, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "캡스톤디자인과창업프로젝트B", "공학관", "화", 12, 30, 14, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "캡스톤디자인과창업프로젝트B", "공학관", "금", 14, 0, 17, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "정보통신공학", "공학관", "수", 11, 0, 12, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "정보통신공학", "공학관", "금", 9, 30, 11, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "오토마타및형식언어", "공학관", "수", 15, 30, 17, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "오토마타및형식언어", "공학관", "금", 12, 30, 14, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "K-MOOC:동물의행동"));
+
+        temp = addClass(temp, temp.classList);
+
+        result.add(temp);
+
+        // 시트 5 오혜린
+        tableId++;
+        temp = new Table(tableId);
+
+        classId++;
+        temp.classList.add(new Class(classId, "마케팅 조사", "신세계관", "월", 14, 0, 15, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "마케팅 조사", "신세계관", "수", 12, 30, 14, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "인적자원관리", "신세계관", "월", 15, 30, 17, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "인적자원관리", "신세계관", "수", 14, 0, 15, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "미시경제이론", "포스코관", "화", 9, 30, 11, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "미시경제이론", "포스코관", "금", 11, 0, 12, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "개인금융", "신세계관", "화", 11, 0, 12, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "개인금융", "신세계관", "목", 9, 30, 11, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "경영학원론", "신세계관", "수", 11, 0, 12, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "경영학원론", "신세계관", "금", 9, 30, 11, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "시장경제세미나", "포스코관", "수", 15, 30, 18, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "채플", "대강당", "목", 11, 30, 12, 0));
+
+        temp = addClass(temp, temp.classList);
+
+        result.add(temp);
+
+        // 시트 6 권태영
+        tableId++;
+        temp = new Table(tableId);
+
+        classId++;
+        temp.classList.add(new Class(classId, "정보통신공학", "공학관", "월", 12, 30, 14, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "정보통신공학", "공학관", "목", 14, 0, 15, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "운영체제", "공학관", "월", 15, 30, 17, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "운영체제", "공학관", "수", 14, 0, 15, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "데이터베이스", "공학관", "화", 12, 30, 14, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "데이터베이스", "공학관", "목", 14, 0, 15, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "컴퓨터알고리즘", "공학관", "화", 15, 30, 17, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "컴퓨터알고리즘", "공학관", "목", 12, 30, 14, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "SW리더십과기업가정신세미나", "공학관", "화", 17, 0, 18, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "인물로본중국의역사", "포스코관", "수", 11, 0, 12, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "인물로본중국의역사", "포스코관", "금", 12, 30, 14, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "채플", "대강당", "목", 11, 30, 12, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "시장경제세미나", "포스코관", "목", 15, 30, 18, 30));
+
+        temp = addClass(temp, temp.classList);
+
+        result.add(temp);
+
+        // 시트 7 차소연
+        tableId++;
+        temp = new Table(tableId);
+
+        classId++;
+        temp.classList.add(new Class(classId, "정보통신공학", "공학관", "화", 9, 30, 11, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "정보통신공학", "공학관", "금", 11, 0, 12, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "인공지능", "공학관", "월", 11, 0, 12, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "인공지능", "공학관", "수", 9, 30, 11, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "컴퓨터알고리즘", "공학관", "화", 15, 30, 17, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "컴퓨터알고리즘", "공학관", "목", 12, 30, 14, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "데이터베이스", "공학관", "화", 14, 0, 15, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "데이터베이스", "공학관", "목", 15, 30, 17, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "프로그래밍을위한컴퓨팅적사고"));
+        classId++;
+        temp.classList.add(new Class(classId, "K-MOOC:동물의행동"));
+        classId++;
+        temp.classList.add(new Class(classId, "채플", "대강당", "목", 10, 0, 10, 30));
+
+        temp = addClass(temp, temp.classList);
+
+        result.add(temp);
+
+        // 시트 8 김혜빈
+        tableId++;
+        temp = new Table(tableId);
+
+        classId++;
+        temp.classList.add(new Class(classId, "가상현실과멀티미디어", "신세계관", "월", 14, 0, 15, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "가상현실과멀티미디어", "신세계관", "수", 12, 30, 14, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "자료구조와알고리즘개론", "원격/비대면", "월", 12, 30, 14, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "자료구조와알고리즘개론", "원격/비대면", "목", 14, 0, 15, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "인공지능과딥러닝개론", "원격/비대면", "화", 14, 0, 15, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "인공지능과딥러닝개론", "원격/비대면", "목", 15, 30, 17, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "정보기술과미래사회"));
+        classId++;
+        temp.classList.add(new Class(classId, "정보기술과미래사회"));
+        classId++;
+        temp.classList.add(new Class(classId, "K-MOOC:아동의신비한언어습득력-이중언어아동"));
+        classId++;
+        temp.classList.add(new Class(classId, "K-MOOC:아동의신비한언어습득력-이중언어아동"));
+        classId++;
+        temp.classList.add(new Class(classId, "채플", "대강당", "목", 11, 30, 12, 0));
+
+        temp = addClass(temp, temp.classList);
+
+        result.add(temp);
+
+        // 시트 9 조민서
+        tableId++;
+        temp = new Table(tableId);
+
+        classId++;
+        temp.classList.add(new Class(classId, "캡스톤디자인과창업프로젝트B", "공학관", "화", 12, 30, 14, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "캡스톤디자인과창업프로젝트B", "공학관", "금", 14, 0, 17, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "운영체제", "공학관", "월", 14, 0, 15, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "운영체제", "공학관", "수", 12, 30, 14, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "미시경제이론", "포스코관", "수", 15, 30, 17, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "미시경제이론", "포스코관", "금", 12, 30, 14, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "거시경제이론"));
+        classId++;
+        temp.classList.add(new Class(classId, "금융경제학", "포스코관", "월", 9, 30, 11, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "금융경제학", "포스코관", "목", 11, 0, 12, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "인류문명과환경과학"));
+        classId++;
+        temp.classList.add(new Class(classId, "채플", "대강당", "수", 11, 30, 12, 0));
+
+        temp = addClass(temp, temp.classList);
+
+        result.add(temp);
+
+        // 시트 10 장예원
+        tableId++;
+        temp = new Table(tableId);
+
+        classId++;
+        temp.classList.add(new Class(classId, "모바일인터랙션디자인(캡스톤디자인)", "조형예술관", "월", 9, 30, 12, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "현대영국소설", "신세계관", "화", 9, 30, 11, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "현대영국소설", "신세계관", "금", 11, 0, 12, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "현대시와사회", "ECC", "화", 12, 30, 14, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "현대시와사회", "ECC", "금", 14, 0, 15, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "형태와공간I", "조형예술관", "수", 9, 30, 12, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "브랜드아이덴티티디자인", "조형예술관", "목", 9, 30, 12, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "엔터테인먼트그래픽스", "조형예술관", "목", 17, 0, 20, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "채플", "대강당", "금", 9, 30, 11, 0));
+
+        temp = addClass(temp, temp.classList);
+
+        result.add(temp);
+
+        // 시트 11 허지원
+        tableId++;
+        temp = new Table(tableId);
+
+        classId++;
+        temp.classList.add(new Class(classId, "정보디자인", "조형예술관", "월", 11, 0, 14, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "타이포그래피1", "조형예술관", "화", 9, 30, 12, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "북아트", "조형예술관", "화", 14, 0, 17, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "한국회화스튜디오3", "조형예술관", "수", 14, 0, 17, 0));
+        classId++;
+        temp.classList.add(new Class(classId, "그래픽디자인", "조형예술관", "목", 9, 30, 12, 30));
+        classId++;
+        temp.classList.add(new Class(classId, "현대수묵1", "조형예술관", "목", 14, 0, 17, 0));
+
+        temp = addClass(temp, temp.classList);
+
+        result.add(temp);
+
+
+        // 데이터리스트 리턴
+        return result;
+    }
+
+    /*
+    이 아래는 이동난이도 데이터를 생성하여 Map에 넣는 함수
+     */
+    public static Map<List<String>, Move> makeMoveDifficulties () {
+        Map<List<String>, Move> moveDifficulty = new HashMap<>();
+
+        //  - data1~data6을 채점하기 위한 이동난이도 쌍
+        moveDifficulty.put(Arrays.asList("학관", "학관"), new Move(false, Difficulty.LOW));
+        moveDifficulty.put(Arrays.asList("학관", "ECC"), new Move(false, Difficulty.MEDIUM));
+        moveDifficulty.put(Arrays.asList("학관", "공학관"), new Move(true, Difficulty.HIGH));
+        moveDifficulty.put(Arrays.asList("ECC", "학관"), new Move(true, Difficulty.HIGH));
+        moveDifficulty.put(Arrays.asList("공학관", "학관"), new Move(false, Difficulty.HIGH));
+        //  - data7(삼와머니 팀원들이 모은 시간표)을 채점하기 위한 이동난이도 쌍
+        moveDifficulty.put(Arrays.asList("ECC", "ECC"), new Move(false, Difficulty.LOW));
+        moveDifficulty.put(Arrays.asList("공학관", "공학관"), new Move(false, Difficulty.LOW));
+        moveDifficulty.put(Arrays.asList("신세계관", "신세계관"), new Move(false, Difficulty.LOW));
+        moveDifficulty.put(Arrays.asList("조형예술관", "조형예술관"), new Move(false, Difficulty.LOW));
+        moveDifficulty.put(Arrays.asList("종합과학관", "종합과학관"), new Move(false, Difficulty.LOW));
+        moveDifficulty.put(Arrays.asList("포스코관", "포스코관"), new Move(false, Difficulty.LOW));
+        moveDifficulty.put(Arrays.asList("ECC", "대강당"), new Move(true, Difficulty.LOW));
+        moveDifficulty.put(Arrays.asList("ECC", "신세계관"), new Move(true, Difficulty.MEDIUM));
+        moveDifficulty.put(Arrays.asList("ECC", "조형예술관"), new Move(true, Difficulty.MEDIUM));
+        moveDifficulty.put(Arrays.asList("ECC", "종합과학관"), new Move(true, Difficulty.HIGH));
+        moveDifficulty.put(Arrays.asList("ECC", "포스코관"), new Move(true, Difficulty.MEDIUM));
+        moveDifficulty.put(Arrays.asList("ECC", "학관"), new Move(true, Difficulty.HIGH));
+        moveDifficulty.put(Arrays.asList("sk텔레콤관(정보관)", "공학관"), new Move(true, Difficulty.HIGH));
+        moveDifficulty.put(Arrays.asList("sk텔레콤관(정보관)", "대강당"), new Move(true, Difficulty.MEDIUM));
+        moveDifficulty.put(Arrays.asList("공학관", "sk텔레콤관(정보관)"), new Move(false, Difficulty.HIGH));
+        moveDifficulty.put(Arrays.asList("공학관", "대강당"), new Move(false, Difficulty.HIGH));
+        moveDifficulty.put(Arrays.asList("공학관", "종합과학관"), new Move(false, Difficulty.HIGH));
+        moveDifficulty.put(Arrays.asList("공학관", "포스코관"), new Move(false, Difficulty.HIGH));
+        moveDifficulty.put(Arrays.asList("대강당", "sk텔레콤관(정보관)"), new Move(false, Difficulty.LOW));
+        moveDifficulty.put(Arrays.asList("대강당", "ECC"), new Move(false, Difficulty.LOW));
+        moveDifficulty.put(Arrays.asList("대강당", "공학관"), new Move(true, Difficulty.HIGH));
+        moveDifficulty.put(Arrays.asList("대강당", "신세계관"), new Move(false, Difficulty.LOW));
+        moveDifficulty.put(Arrays.asList("대강당", "조형예술관"), new Move(true, Difficulty.MEDIUM));
+        moveDifficulty.put(Arrays.asList("대강당", "종합과학관"), new Move(true, Difficulty.MEDIUM));
+        moveDifficulty.put(Arrays.asList("대강당", "포스코관"), new Move(true, Difficulty.MEDIUM));
+        moveDifficulty.put(Arrays.asList("대강당", "학관"), new Move(false, Difficulty.LOW));
+        moveDifficulty.put(Arrays.asList("신세계관", "ECC"), new Move(false, Difficulty.LOW));
+        moveDifficulty.put(Arrays.asList("신세계관", "대강당"), new Move(true, Difficulty.MEDIUM));
+        moveDifficulty.put(Arrays.asList("신세계관", "포스코관"), new Move(true, Difficulty.HIGH));
+        moveDifficulty.put(Arrays.asList("신세계관", "조형예술관"), new Move(false, Difficulty.MEDIUM));
+        moveDifficulty.put(Arrays.asList("조형예술관", "ECC"), new Move(false, Difficulty.LOW));
+        moveDifficulty.put(Arrays.asList("조형예술관", "대강당"), new Move(false, Difficulty.MEDIUM));
+        moveDifficulty.put(Arrays.asList("조형예술관", "신세계관"), new Move(false, Difficulty.HIGH));
+        moveDifficulty.put(Arrays.asList("종합과학관", "ECC"), new Move(false, Difficulty.MEDIUM));
+        moveDifficulty.put(Arrays.asList("종합과학관", "공학관"), new Move(false, Difficulty.MEDIUM));
+        moveDifficulty.put(Arrays.asList("종합과학관", "대강당"), new Move(false, Difficulty.MEDIUM));
+        moveDifficulty.put(Arrays.asList("종합과학관", "포스코관"), new Move(false, Difficulty.LOW));
+        moveDifficulty.put(Arrays.asList("종합과학관", "학관"), new Move(false, Difficulty.HIGH));
+        moveDifficulty.put(Arrays.asList("포스코관", "ECC"), new Move(false, Difficulty.MEDIUM));
+        moveDifficulty.put(Arrays.asList("포스코관", "공학관"), new Move(true, Difficulty.HIGH));
+        moveDifficulty.put(Arrays.asList("포스코관", "대강당"), new Move(false, Difficulty.LOW));
+        moveDifficulty.put(Arrays.asList("포스코관", "신세계관"), new Move(false, Difficulty.HIGH));
+        moveDifficulty.put(Arrays.asList("포스코관", "종합과학관"), new Move(false, Difficulty.LOW));
+        moveDifficulty.put(Arrays.asList("포스코관", "학관"), new Move(false, Difficulty.HIGH));
+        moveDifficulty.put(Arrays.asList("학관", "ECC"), new Move(false, Difficulty.MEDIUM));
+        moveDifficulty.put(Arrays.asList("학관", "대강당"), new Move(false, Difficulty.LOW));
+        moveDifficulty.put(Arrays.asList("학관", "종합과학관"), new Move(true, Difficulty.MEDIUM));
+        moveDifficulty.put(Arrays.asList("학관", "포스코관"), new Move(true, Difficulty.LOW));
+
+        // 완성된 이동난이도 Map을 리턴
+        return moveDifficulty;
+
     }
 
     /*
@@ -1295,7 +1673,7 @@ public class Main {
             specialComments.put(i, new SpecialComment(i, contents[i.intValue()], i));
         // 우선순위는 일단 ID와 동일하게 설정하였음
 
-        // 완성된 스페셜 코멘트 목록을 리턴
+        // 완성된 스페셜 코멘트 Map을 리턴
         return specialComments;
     }
 
@@ -1303,7 +1681,7 @@ public class Main {
     이 아래는 테스트용 함수
      */
 
-    // 수업 데이터 생성이 잘 되었는지 테스트하는 함수
+    // 수업 데이터 생성이 잘 되었는지 프린트해보는 함수
     public static void printClasses (ArrayList<Class> list) {
         // 주어진 수업 리스트에 대하여
         for(Class c : list) {
@@ -1319,31 +1697,32 @@ public class Main {
         }
     }
 
-    // 시간표 데이터 생성이 잘 되었는지 테스트하는 함수
+    // 시간표 데이터 생성이 잘 되었는지 프린트해보는 함수
     public static void printTables (ArrayList<Table> list) {
         // 주어진 시간표 리스트에 대하여
         for(Table s : list) {
             // 시간표 ID 출력
             System.out.println("Table ID: " + s.id);
             // 시간표에 포함된 수업들의 ID 출력
-            System.out.print("Class IDs: ");
+            System.out.print("모든 수업의 ID: ");
             for(Class c : s.classList) System.out.print(c.id + " ");
             System.out.println();
-            // 요일별로 수업들의 ID 출력
-            System.out.print("월요일: ");
-            for(Class c : s.monday) System.out.print(c.id + " ");
             System.out.println();
-            System.out.print("화요일: ");
-            for(Class c : s.tuesday) System.out.print(c.id + " ");
+            // 요일별로 수업들의 정보 출력
+            System.out.println("월요일: ");
+            for(Class c : s.monday) System.out.println(c.id + " " + c.className + ", " + c.location + ", " + c.weekday + ", " + c.startH + ":" + c.startM + " ~ " + c.endH + ":" + c.endM);
             System.out.println();
-            System.out.print("수요일: ");
-            for(Class c : s.wednesday) System.out.print(c.id + " ");
+            System.out.println("화요일: ");
+            for(Class c : s.tuesday) System.out.println(c.id + " " + c.className + ", " + c.location + ", " + c.weekday + ", " + c.startH + ":" + c.startM + " ~ " + c.endH + ":" + c.endM);
             System.out.println();
-            System.out.print("목요일: ");
-            for(Class c : s.thursday) System.out.print(c.id + " ");
+            System.out.println("수요일: ");
+            for(Class c : s.wednesday) System.out.println(c.id + " " + c.className + ", " + c.location + ", " + c.weekday + ", " + c.startH + ":" + c.startM + " ~ " + c.endH + ":" + c.endM);
             System.out.println();
-            System.out.print("금요일: ");
-            for(Class c : s.friday) System.out.print(c.id + " ");
+            System.out.println("목요일: ");
+            for(Class c : s.thursday) System.out.println(c.id + " " + c.className + ", " + c.location + ", " + c.weekday + ", " + c.startH + ":" + c.startM + " ~ " + c.endH + ":" + c.endM);
+            System.out.println();
+            System.out.println("금요일: ");
+            for(Class c : s.friday) System.out.println(c.id + " " + c.className + ", " + c.location + ", " + c.weekday + ", " + c.startH + ":" + c.startM + " ~ " + c.endH + ":" + c.endM);
             System.out.println();
             System.out.println();
 
