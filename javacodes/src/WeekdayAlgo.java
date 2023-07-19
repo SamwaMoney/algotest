@@ -49,6 +49,8 @@ public class WeekdayAlgo {
             special.add(5); // special comment id 5 (충격) 6시 넘어서 수업 듣는 사람 (진짜 계심)
         if (stayLongCnt >= 3)
             special.add(6); // special comment id 6 이대 지박령을 뵙습니다
+        if(plopCnt > 0)
+            special.add(7); // special comment id 7 퐁당퐁당 수업을 나누자
         if (highCnt >= 3)
             special.add(9); // special comment id 9 이대생인 내가 쉬는 시간에는 치타?
         if (uphillCnt >= 3)
