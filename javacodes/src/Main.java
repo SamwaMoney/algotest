@@ -121,6 +121,7 @@ public class Main {
 //        System.out.println("모두 오후 수업인지 판별");
 //        for(Table t : data2) AllClassAlgo.allAfternoonAlgo(t);
 
+        // 이동난이도 해시맵 생성
         Map<List<String>, Move> moveDifficulty = new HashMap<>();
         moveDifficulty.put(Arrays.asList("학관", "학관"), new Move(false, Difficulty.LOW));
         moveDifficulty.put(Arrays.asList("학관", "ECC"), new Move(false, Difficulty.MEDIUM));
@@ -128,21 +129,34 @@ public class Main {
         moveDifficulty.put(Arrays.asList("ECC", "학관"), new Move(true, Difficulty.HIGH));
         moveDifficulty.put(Arrays.asList("공대", "학관"), new Move(false, Difficulty.HIGH));
 
-        testData(data4, moveDifficulty);
+        // 스페셜 코멘트 해시맵 생성
+        Map<Long, SpecialComment> specialComments = makeSpecialComments();
+
+        // 채점 수행
+        testData(data4, moveDifficulty, specialComments);
     }
 
-    public static void testData(ArrayList<Table> data, Map<List<String>, Move> moveDifficulty){
+    /*
+    최종적으로 채점 작업을 수행하는 함수
+     */
+    public static void testData(ArrayList<Table> data, Map<List<String>, Move> moveDifficulty, Map<Long, SpecialComment> specialComments){
+        Long index = 1L;
+
         for(Table t : data){
+            System.out.println("================= " + index++ + "번 시간표 채점 시작 =================");
+
             ArrayList<Integer> good = new ArrayList<>();
             ArrayList<Integer> bad = new ArrayList<>();
             ArrayList<Integer> special = new ArrayList<>();
 
             int score = 60; // 기본 점수 60점 
 
-            System.out.println("========== algorithm test - 전체 ==========");
+            System.out.println();
+            System.out.println("--------------- algorithm test - 전체 ---------------");
             score += AllClassAlgo.allClassAlgo(t, good, bad, special);
-            System.out.println("");
-            System.out.println("========== algorithm test - 요일별 ==========");
+
+            System.out.println();
+            System.out.println("--------------- algorithm test - 요일별 ---------------");
             score += WeekdayAlgo.weekdayAlgo(t, moveDifficulty, good, bad, special);
 
             if (score < 0)
@@ -158,7 +172,16 @@ public class Main {
             System.out.println("bad: " + bad);
             System.out.println("special: " + special);
             System.out.println("총점: " + score);
-            System.out.println("===========================================");
+
+            System.out.println();
+            System.out.println("--------------- algorithm test - 유형 선정 ---------------");
+            // 시간표 유형 판별
+            System.out.println("이 시간표의 유형: " + TableTypeAlgo.tableTypeAlgo(special, specialComments));
+
+            System.out.println();
+            System.out.println();
+
+
         }
     }
 
@@ -1203,6 +1226,38 @@ public class Main {
 
         // 데이터리스트 리턴
         return result;
+    }
+
+    /*
+    이 아래는 스페셜 코멘트 데이터를 생성하여 Map에 넣는 함수
+     */
+    public static Map<Long, SpecialComment> makeSpecialComments () {
+        Map<Long, SpecialComment> specialComments = new HashMap<>();
+
+        // 한비 님이 부여하신 ID대로 코멘트 내용 채우기
+        String[] contents = new String[14];
+        contents[0] = "취미는 학교 다니기";
+        contents[1] = "등록금 뿌린 대로 거두자";
+        contents[2] = "이화 사이버 대학교";
+        contents[3] = "하나님의 축복이 끝이 없네";
+        contents[4] = "상여자 특) 점심 먹고 등교함";
+        contents[5] = "(충격) 6시 넘어서 수업 듣는 사람 (진짜 계심)";
+        contents[6] = "이대 지박령을 뵙습니다";
+        contents[7] = "퐁당퐁당 수업을 나누자";
+        contents[8] = "동에 번쩍 서에 번쩍";
+        contents[9] = "쉬는 시간에 치타가 되는 사람";
+        contents[10] = "이화사랑산악회";
+        contents[11] = "점심은 포기 못해";
+        contents[12] = "밥은 먹고 다니냐?";
+        contents[13] = "한 건물 지박령";
+
+        // 14개의 스페셜 코멘트를 Map에 모두 추가
+        for(Long i=0L; i<14; i++)
+            specialComments.put(i, new SpecialComment(i, contents[i.intValue()], i));
+        // 우선순위는 일단 ID와 동일하게 설정하였음
+
+        // 완성된 스페셜 코멘트 목록을 리턴
+        return specialComments;
     }
 
     /*
