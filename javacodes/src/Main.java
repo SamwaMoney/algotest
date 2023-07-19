@@ -12,7 +12,7 @@ public class Main {
     static ArrayList<Class> hak;
     // ECC에서 하는 강의들을 담을 리스트
     static ArrayList<Class> ecc;
-    // 공대에서 하는 강의들을 담을 리스트
+    // 공학관에서 하는 강의들을 담을 리스트
     static ArrayList<Class> eng;
     // K-MOOC 강의들을 담을 리스트
     static ArrayList<Class> km;
@@ -29,7 +29,7 @@ public class Main {
         classId = 0L;
 
         // 학관 기준으로 했을 때 다른 건물들과의 이동난이도 및 오르막길 여부 분포가 적절해서, 학관을 중심으로 데이터를 생성했습니다.
-        // 원래 공대 중심으로 하려고 했는데... 공대는 모든 건물과의 이동난이도가 '상'이라서 대신 학관으로 선택했습니다ㅎㅎ...
+        // 원래 공학관 중심으로 하려고 했는데... 공학관은 모든 건물과의 이동난이도가 '상'이라서 대신 학관으로 선택했습니다ㅎㅎ...
 
         // 학관 과목 16개 생성
         hak = hak();
@@ -37,7 +37,7 @@ public class Main {
         // 학관과의 이동난이도가 갈 때 '중', 올 때 '상'인 ECC 과목 3개 생성
         ecc = ecc();
 
-        // 학관과의 이동난이도가 왕복 모두 '상'인 공대 과목 3개 생성
+        // 학관과의 이동난이도가 왕복 모두 '상'인 공학관 과목 3개 생성
         eng = eng();
 
         // K-MOOC 과목 3개 생성
@@ -68,6 +68,9 @@ public class Main {
 
         // 6. K-MOOC 개수 차이에 따른 점수 변동 확인을 위한 데이터리스트
         ArrayList<Table> data6 = dataGen6();
+
+        // 7. 삼와머니 팀원들이 구글 스프레드시트에 모은 실제 시간표들의 데이터리스트
+        ArrayList<Table> data7 = dataGen7();
 
 
         /*
@@ -125,9 +128,9 @@ public class Main {
         Map<List<String>, Move> moveDifficulty = new HashMap<>();
         moveDifficulty.put(Arrays.asList("학관", "학관"), new Move(false, Difficulty.LOW));
         moveDifficulty.put(Arrays.asList("학관", "ECC"), new Move(false, Difficulty.MEDIUM));
-        moveDifficulty.put(Arrays.asList("학관", "공대"), new Move(true, Difficulty.HIGH));
+        moveDifficulty.put(Arrays.asList("학관", "공학관"), new Move(true, Difficulty.HIGH));
         moveDifficulty.put(Arrays.asList("ECC", "학관"), new Move(true, Difficulty.HIGH));
-        moveDifficulty.put(Arrays.asList("공대", "학관"), new Move(false, Difficulty.HIGH));
+        moveDifficulty.put(Arrays.asList("공학관", "학관"), new Move(false, Difficulty.HIGH));
 
         // 스페셜 코멘트 해시맵 생성
         Map<Long, SpecialComment> specialComments = makeSpecialComments();
@@ -303,28 +306,28 @@ public class Main {
         return result;
     }
 
-    // 공대 과목 3개를 생성하는 함수
+    // 공학관 과목 3개를 생성하는 함수
     public static ArrayList<Class> eng() {
-        // 학관과의 이동난이도가 왕복 모두 '상'인 공대 과목 3개 (수업 6개)
+        // 학관과의 이동난이도가 왕복 모두 '상'인 공학관 과목 3개 (수업 6개)
         ArrayList<Class> result = new ArrayList<>();
 
-        // 학관과목1 의 위치만 공대로 바꾼 것
+        // 학관과목1 의 위치만 공학관로 바꾼 것
         classId++;
-        result.add(new Class(classId, "공대과목1", "공대", "월", 11, 0, 12, 30));
+        result.add(new Class(classId, "공학관과목1", "공학관", "월", 11, 0, 12, 30));
         classId++;
-        result.add(new Class(classId, "공대과목1", "공대", "수", 9, 30, 11, 0));
+        result.add(new Class(classId, "공학관과목1", "공학관", "수", 9, 30, 11, 0));
 
-        // 학관과목3 의 위치만 공대로 바꾼 것
+        // 학관과목3 의 위치만 공학관로 바꾼 것
         classId++;
-        result.add(new Class(classId, "공대과목2", "공대", "월", 14, 0, 15, 30));
+        result.add(new Class(classId, "공학관과목2", "공학관", "월", 14, 0, 15, 30));
         classId++;
-        result.add(new Class(classId, "공대과목2", "공대", "수", 15, 30, 17, 0));
+        result.add(new Class(classId, "공학관과목2", "공학관", "수", 15, 30, 17, 0));
 
-        // 학관과목5 의 위치만 공대로 바꾼 것
+        // 학관과목5 의 위치만 공학관로 바꾼 것
         classId++;
-        result.add(new Class(classId, "공대과목3", "공대", "화", 11, 0, 12, 30));
+        result.add(new Class(classId, "공학관과목3", "공학관", "화", 11, 0, 12, 30));
         classId++;
-        result.add(new Class(classId, "공대과목3", "공대", "목", 12, 30, 14, 0));
+        result.add(new Class(classId, "공학관과목3", "공학관", "목", 12, 30, 14, 0));
 
 
         return result;
@@ -869,7 +872,7 @@ public class Main {
     // 이동난이도 차이에 따른 점수 변동 확인을 위한 데이터리스트를 생성하는 함수
     public static ArrayList<Table> dataGen5 () {
         // 이 함수 내의 모든 시간표는 엑셀 파일의 "기본 시간표 형태"를 따름
-        // "기본 시간표 형태"에서, 1번, 3번, 5번 강의의 강의위치만(학관/ECC/공대) 바꾸어 데이터를 생성하였음
+        // "기본 시간표 형태"에서, 1번, 3번, 5번 강의의 강의위치만(학관/ECC/공학관) 바꾸어 데이터를 생성하였음
         // 즉, 모든 시간표에서 직전직후 수업간 이동은 총 6번
 
         ArrayList<Table> result = new ArrayList<>();
@@ -934,7 +937,7 @@ public class Main {
 
         temp.classList.add(eng.get(0));
         temp.classList.add(eng.get(1));
-        // 공대 <-> 학관 (상 2회)
+        // 공학관 <-> 학관 (상 2회)
         temp.classList.add(hak.get(2));
         temp.classList.add(hak.get(3));
 
@@ -966,7 +969,7 @@ public class Main {
 
         temp.classList.add(eng.get(2));
         temp.classList.add(eng.get(3));
-        // 공대 <-> 학관 (상 2회)
+        // 공학관 <-> 학관 (상 2회)
         temp.classList.add(hak.get(6));
         temp.classList.add(hak.get(7));
 
@@ -1038,7 +1041,7 @@ public class Main {
 
         temp.classList.add(eng.get(0));
         temp.classList.add(eng.get(1));
-        // 공대 <-> 학관 (상 2회)
+        // 공학관 <-> 학관 (상 2회)
         temp.classList.add(hak.get(2));
         temp.classList.add(hak.get(3));
 
@@ -1064,13 +1067,13 @@ public class Main {
 
         temp.classList.add(eng.get(0));
         temp.classList.add(eng.get(1));
-        // 공대 <-> 학관 (상 2회)
+        // 공학관 <-> 학관 (상 2회)
         temp.classList.add(hak.get(2));
         temp.classList.add(hak.get(3));
 
         temp.classList.add(eng.get(2));
         temp.classList.add(eng.get(3));
-        // 공대 <-> 학관 (상 2회)
+        // 공학관 <-> 학관 (상 2회)
         temp.classList.add(hak.get(6));
         temp.classList.add(hak.get(7));
 
@@ -1090,19 +1093,19 @@ public class Main {
 
         temp.classList.add(eng.get(0));
         temp.classList.add(eng.get(1));
-        // 공대 <-> 학관 (상 2회)
+        // 공학관 <-> 학관 (상 2회)
         temp.classList.add(hak.get(2));
         temp.classList.add(hak.get(3));
 
         temp.classList.add(eng.get(2));
         temp.classList.add(eng.get(3));
-        // 공대 <-> 학관 (상 2회)
+        // 공학관 <-> 학관 (상 2회)
         temp.classList.add(hak.get(6));
         temp.classList.add(hak.get(7));
 
         temp.classList.add(eng.get(4));
         temp.classList.add(eng.get(5));
-        // 공대 <-> 학관 (상 2회)
+        // 공학관 <-> 학관 (상 2회)
         temp.classList.add(hak.get(10));
         temp.classList.add(hak.get(11));
 
@@ -1226,6 +1229,42 @@ public class Main {
 
         // 데이터리스트 리턴
         return result;
+    }
+
+    // 삼와머니 팀원들이 구글 스프레드시트에 모은 실제 시간표들의 데이터리스트를 생성하는 함수
+    public static ArrayList<Table> dataGen7 () {
+        ArrayList<Table> result = new ArrayList<>();
+
+        Table temp;
+
+        // 스프레드시트의 시트 순서대로 추가하였습니다
+
+        // 시트 1 노하은
+        tableId++;
+        temp = new Table(tableId);
+
+        classId++;
+        temp.classList.add(new Class(classId, "인공지능", "공학관"));
+        temp.classList.add(hak.get(1));
+
+        temp.classList.add(hak.get(2));
+        temp.classList.add(hak.get(3));
+
+        temp.classList.add(hak.get(4));
+        temp.classList.add(hak.get(5));
+
+        temp.classList.add(hak.get(6));
+        temp.classList.add(hak.get(7));
+
+        temp.classList.add(hak.get(8));
+        temp.classList.add(hak.get(9));
+
+        temp.classList.add(hak.get(10));
+        temp.classList.add(hak.get(11));
+
+        temp = addClass(temp, temp.classList);
+
+        result.add(temp);
     }
 
     /*
