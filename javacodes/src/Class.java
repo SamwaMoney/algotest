@@ -10,7 +10,7 @@ class Class {
     int endH;           // 끝 시
     int endM;           // 끝 분
 
-    // 생성자 (오프라인 강의)
+    // 생성자 (오프라인 강의 & 시간이 정해진 원격/비대면 강의)
     public Class (Long classId, String className, String location, String weekday, int startH, int startM, int endH, int endM){
         this.id = classId;
         this.className = className;
@@ -22,7 +22,7 @@ class Class {
         this.endM = endM;
     }
 
-    // 생성자 (온라인 강의)
+    // 생성자 (시간이 정해지지 않은 원격/비대면 강의)
     public Class (Long classId, String className){
         this.id = classId;
         this.className = className;
