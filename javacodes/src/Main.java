@@ -1457,7 +1457,7 @@ public class Main {
         classId++;
         temp.classList.add(new Class(classId, "K-MOOC:동물의행동"));
         classId++;
-        temp.classList.add(new Class(classId, "채플", "대강당", "목", 10, 0, 10, 30));
+        temp.classList.add(new Class(classId, "채플", "대강당", "월", 10, 0, 10, 30));
 
         temp = addClass(temp, temp.classList);
 
