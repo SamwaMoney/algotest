@@ -100,22 +100,10 @@ public class WeekdayAlgo {
                 return 1;
         });
 
-        sevenCntAlgo(day);
         stayLongCntAlgo(day);
         inARowAlgo(day, moveDifficulty);
-        noLunchCntAlgo(day);
+        cntTimeAlgo(day);
         
-        return;
-    }
-
-    // 7교시 있는 날 세는 함수
-    static void sevenCntAlgo(List<Class> day){
-        for (Class c : day) {
-            if (c.startH == 17){
-                sevenCnt++;
-                return;
-            }
-        }
         return;
     }
 
@@ -220,25 +208,33 @@ public class WeekdayAlgo {
         return;
     }
     
-    // 점심 못 먹는 날 세는 함수
-    static void noLunchCntAlgo(List<Class> day){
-        boolean[] hasClass = new boolean[21]; // 1교시~7교시에 대해 한 인덱스가 30분 동안 수업이 있는지 없는지에 대한 t/f 값
+    // 점심 못 먹는 날 + 7교시 수 세는 함수
+    static void cntTimeAlgo(List<Class> day){
+        boolean[] hasClass = new boolean[28]; // 8시~22시에 대해 한 인덱스가 30분 동안 수업이 있는지 없는지에 대한 t/f 값
         int hasTimeCnt = 0;
         for (Class c: day){
-            if (c.startH >= 14)
-                break;
-            int time = ((c.endH - c.startH) * 60 + c.endM - c.startM) / 30;
-            int startIdx = ((c.startH - 8) * 60 + c.startM) / 30;
-            for (int i = startIdx; i<startIdx + time; i++){
+            int time = ((c.endH - c.startH) * 60 + c.endM - c.startM) / 30; // 해당 수업의 30분 블록 수 계산
+            int startIdx = ((c.startH - 8) * 60 + c.startM) / 30; // 해당 수업의 시작 인덱스 계산
+            for (int i = startIdx; i<startIdx + time; i++){ // 시작 인덱스부터 수업 길이만큼 true 처리
                 hasClass[i] = true;
             }
         }
-        for (int i = 6; i < 12; i++){ // 11시부터 2시까지
+
+        // 점심 못 먹는 날 검사
+        for (int i = 6; i < 12; i++){ // 11시부터 14시까지
             if (hasClass[i] == false)
                 hasTimeCnt++;
         } 
         if (hasTimeCnt < 1){ // 밥 먹을 수 있는 시간이 30분 미만이면
             noLunchCnt++;
         }
+
+        // 7교시 있는 날 검사
+        for (int i = 18; i < 28; i++){ // 17시부터 하나라도 수업이 있으면 7교시 있는 날로 처리 
+            if (hasClass[i] == true){
+                sevenCnt++;
+                break;
+            }
+        } 
     }
 }
