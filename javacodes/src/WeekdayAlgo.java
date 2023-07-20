@@ -177,7 +177,7 @@ public class WeekdayAlgo {
 
                 List<String> locationPair = Arrays.asList(current.location, next.location);
 
-                // 연속된 두 수업 중 하나가 시간이 정해진 원격/비대면 수업이라면, 오르막길이 아닌 이동난이도 '하'와 동일하게 취급
+                // 연속된 두 수업 중 하나라도, 시간이 정해진 원격/비대면 수업이라면, 오르막길이 아닌 이동난이도 '하'와 동일하게 취급
                 if(current.location.equals("원격/비대면") || next.location.equals("원격/비대면"))
                     score.put("difficulty", score.getOrDefault("difficulty", 0) + 3);
 
