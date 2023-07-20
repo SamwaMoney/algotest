@@ -111,7 +111,7 @@ public class WeekdayAlgo {
     // 7교시 있는 날 세는 함수
     static void sevenCntAlgo(List<Class> day){
         for (Class c : day) {
-            if (c.startH == 5){
+            if (c.startH == 17){
                 sevenCnt++;
                 return;
             }
