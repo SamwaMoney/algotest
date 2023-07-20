@@ -49,6 +49,8 @@ public class WeekdayAlgo {
             special.add(5); // special comment id 5 (충격) 6시 넘어서 수업 듣는 사람 (진짜 계심)
         if (stayLongCnt >= 3)
             special.add(6); // special comment id 6 이대 지박령을 뵙습니다
+        if(plopCnt > 0)
+            special.add(7); // special comment id 7 퐁당퐁당 수업을 나누자
         if (highCnt >= 3)
             special.add(9); // special comment id 9 이대생인 내가 쉬는 시간에는 치타?
         if (uphillCnt >= 3)
@@ -109,7 +111,7 @@ public class WeekdayAlgo {
     // 7교시 있는 날 세는 함수
     static void sevenCntAlgo(List<Class> day){
         for (Class c : day) {
-            if (c.startH == 5){
+            if (c.startH == 17){
                 sevenCnt++;
                 return;
             }
@@ -174,25 +176,35 @@ public class WeekdayAlgo {
                 maxInARowCnt = Math.max(maxInARowCnt, rowCnt); // 현재까지의 최대 연강 수 저장 
 
                 List<String> locationPair = Arrays.asList(current.location, next.location);
-                move = moveDifficulty.get(locationPair);
 
-                if (move.uphill) {
-                    score.put("uphill", score.getOrDefault("uphill", 0) - 3);
-                    uphillCnt++;
+                // 연속된 두 수업 중 하나라도, 시간이 정해진 원격/비대면 수업이라면, 오르막길이 아닌 이동난이도 '하'와 동일하게 취급
+                if(current.location.equals("원격/비대면") || next.location.equals("원격/비대면"))
+                    score.put("difficulty", score.getOrDefault("difficulty", 0) + 3);
+
+                // 연속된 두 수업 모두 오프라인 강의라면, 이동난이도 계산
+                else{
+                    move = moveDifficulty.get(locationPair);
+
+                    if (move.uphill) {
+                        score.put("uphill", score.getOrDefault("uphill", 0) - 3);
+                        uphillCnt++;
+                    }
+
+                    switch (move.difficulty) {
+                        case LOW:
+                            score.put("difficulty", score.getOrDefault("difficulty", 0) + 3);
+                            break;
+                        case MEDIUM:
+                            score.put("difficulty", score.getOrDefault("difficulty", 0));
+                            break;
+                        case HIGH:
+                            score.put("difficulty", score.getOrDefault("difficulty", 0) - 3);
+                            highCnt++;
+                            break;
+                    }
+
                 }
 
-                switch (move.difficulty) {
-                    case LOW:
-                        score.put("difficulty", score.getOrDefault("difficulty", 0) + 3);
-                        break;
-                    case MEDIUM:
-                        score.put("difficulty", score.getOrDefault("difficulty", 0));
-                        break;
-                    case HIGH:
-                        score.put("difficulty", score.getOrDefault("difficulty", 0) - 3);
-                        highCnt++;
-                        break;
-                }
             } else {
                 falseCnt++;
                 inARow = false;
